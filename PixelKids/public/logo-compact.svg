@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="100%" height="100%" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&amp;family=Silkscreen:wght@700&amp;display=swap');
+      .compact-kids { font-family: 'Fredoka', sans-serif; font-size: 34px; font-weight: 700; }
+      .compact-atacado { font-family: 'Silkscreen', monospace; font-size: 8px; fill: #ffffff; font-weight: 700; letter-spacing: 1px; }
+    </style>
+  </defs>
+
+  <!-- Mini fita Atacado -->
+  <g transform="translate(4, 10)">
+    <path d="M 0 0 L 14 0 L 14 38 L 7 32 L 0 38 Z" fill="#00a3e0" stroke="#182c4f" stroke-width="2"/>
+    <g transform="rotate(90) translate(4, -4)">
+      <text x="0" y="0" class="compact-atacado">ATK</text>
+    </g>
+  </g>
+
+  <!-- PIXEL em mini pixel blocks -->
+  <g transform="translate(24, 10)">
+    <!-- Letra P -->
+    <path d="M 0 0 H 22 V 18 H 8 V 32 H 0 Z" fill="#182c4f"/>
+    <rect x="2" y="2" width="5" height="5" fill="#0096e6"/>
+    <rect x="2" y="8" width="5" height="5" fill="#43b02a"/>
+    <rect x="2" y="14" width="5" height="5" fill="#ffd000"/>
+    <rect x="2" y="20" width="5" height="5" fill="#ff7b1a"/>
+    <rect x="2" y="26" width="5" height="5" fill="#e52535"/>
+    <rect x="8" y="2" width="6" height="5" fill="#ffd000"/>
+    <rect x="15" y="2" width="5" height="5" fill="#ff7b1a"/>
+    <rect x="15" y="8" width="5" height="5" fill="#43b02a"/>
+    <rect x="8" y="12" width="6" height="5" fill="#ff7b1a"/>
+    <rect x="8" y="6" width="6" height="6" fill="#ffffff"/>
+
+    <!-- Letra I -->
+    <g transform="translate(26, 0)">
+      <rect x="0" y="0" width="8" height="32" fill="#182c4f" rx="1"/>
+      <rect x="1.5" y="2" width="5" height="5" fill="#00a3e0"/>
+      <rect x="1.5" y="8" width="5" height="5" fill="#ffd000"/>
+      <rect x="1.5" y="14" width="5" height="5" fill="#e52535"/>
+      <rect x="1.5" y="20" width="5" height="5" fill="#0096e6"/>
+      <rect x="1.5" y="26" width="5" height="5" fill="#43b02a"/>
+    </g>
+
+    <!-- Letra X -->
+    <g transform="translate(38, 0)">
+      <rect x="0" y="0" width="7" height="7" fill="#8e44ad" stroke="#182c4f" stroke-width="1.5"/>
+      <rect x="15" y="0" width="7" height="7" fill="#43b02a" stroke="#182c4f" stroke-width="1.5"/>
+      <rect x="7.5" y="12" width="7" height="7" fill="#ffd000" stroke="#182c4f" stroke-width="1.5"/>
+      <rect x="0" y="25" width="7" height="7" fill="#0096e6" stroke="#182c4f" stroke-width="1.5"/>
+      <rect x="15" y="25" width="7" height="7" fill="#ff7b1a" stroke="#182c4f" stroke-width="1.5"/>
+    </g>
+
+    <!-- Letra E -->
+    <g transform="translate(64, 0)">
+      <path d="M 0 0 H 18 V 7 H 7 V 12 H 16 V 19 H 7 V 25 H 18 V 32 H 0 Z" fill="#182c4f"/>
+      <rect x="1.5" y="2" width="4.5" height="5" fill="#0096e6"/>
+      <rect x="1.5" y="8" width="4.5" height="5" fill="#43b02a"/>
+      <rect x="1.5" y="14" width="4.5" height="5" fill="#ffd000"/>
+      <rect x="1.5" y="20" width="4.5" height="5" fill="#ff7b1a"/>
+      <rect x="1.5" y="26" width="4.5" height="5" fill="#e52535"/>
+      <rect x="7" y="2" width="9" height="4.5" fill="#ffd000"/>
+      <rect x="7" y="13" width="7" height="4.5" fill="#ff7b1a"/>
+      <rect x="7" y="26" width="9" height="4.5" fill="#e52535"/>
+    </g>
+
+    <!-- Letra L -->
+    <g transform="translate(86, 0)">
+      <path d="M 0 0 H 7 V 25 H 18 V 32 H 0 Z" fill="#182c4f"/>
+      <rect x="1.5" y="2" width="4.5" height="5" fill="#ff7b1a"/>
+      <rect x="1.5" y="8" width="4.5" height="5" fill="#ffd000"/>
+      <rect x="1.5" y="14" width="4.5" height="5" fill="#8e44ad"/>
+      <rect x="1.5" y="20" width="4.5" height="5" fill="#0096e6"/>
+      <rect x="1.5" y="26" width="4.5" height="5" fill="#e52535"/>
+      <rect x="7" y="26" width="9" height="4.5" fill="#8e44ad"/>
+    </g>
+  </g>
+
+  <!-- KIDS estilizado -->
+  <g transform="translate(136, 38)">
+    <!-- K (Azul) -->
+    <text x="0" y="0" class="compact-kids" fill="#0096e6" stroke="#182c4f" stroke-width="4.5" paint-order="stroke fill">K</text>
+    <!-- I (Azul) -->
+    <text x="24" y="0" class="compact-kids" fill="#0096e6" stroke="#182c4f" stroke-width="4.5" paint-order="stroke fill">I</text>
+    <!-- D (Laranja) -->
+    <text x="38" y="0" class="compact-kids" fill="#ff7b1a" stroke="#182c4f" stroke-width="4.5" paint-order="stroke fill">D</text>
+    <!-- S (Roxo) -->
+    <text x="66" y="0" class="compact-kids" fill="#8e44ad" stroke="#182c4f" stroke-width="4.5" paint-order="stroke fill">S</text>
+
+    <!-- Ponto/coração decorativo -->
+    <circle cx="92" cy="-14" r="3" fill="#ffd000"/>
+  </g>
+</svg>

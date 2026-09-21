@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelKids - Equipe</title>
+  <meta name="description" content="Gestão da equipe e colaboradores da loja PixelKids.">
+  
+  <!-- Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" href="public\PKIco.ico" type="image/x-icon">
+  <!-- Folha de Estilos Unificada -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pixel-bg-pattern">
+
+  <div class="system-layout">
+    
+    <!-- 1. Cabeçalho (Header) Fixo no Topo -->
+    <header id="mainHeader" class="system-header">
+      <div class="header-left">
+        <button id="sidebarToggle" class="sidebar-toggle-btn" title="Compactar / Expandir Menu Lateral" aria-label="Compactar ou expandir menu lateral">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <a href="index.html" class="header-logo-link" title="Ir para a Tela Inicial">
+          <img src="public\PixelKids_cabecalho.png" alt="PixelKids Logo" class="header-logo-img">
+          <span class="header-brand-badge">Painel ADM</span>
+        </a>
+      </div>
+
+      <div class="header-center">
+        <div class="header-page-indicator">
+          <span class="active-dot" style="background-color: var(--color-pink);"></span>
+          <span>Módulo: <strong>Equipe</strong></span>
+        </div>
+      </div>
+
+      <!-- Canto direito: Usuário logado estático PixelKidsADM e Ação de Sair -->
+      <div class="header-right">
+        <div id="userBadge" class="user-profile-badge" title="Usuário autenticado">
+          <div class="user-avatar-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="user-status-indicator" title="Online"></span>
+          </div>
+          <div class="user-info">
+            <span class="user-name">PixelKidsADM</span>
+            <span class="user-role">Administrador</span>
+          </div>
+        </div>
+        <a href="login.html" id="btnLogoutHeader" class="header-logout-btn" title="Sair do Sistema">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span class="logout-text">Sair</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- 2. Menu Lateral Esquerdo (Sidebar) Fixo e Sempre Visível -->
+    <aside id="mainSidebar" class="system-sidebar" aria-label="Menu Lateral do Sistema">
+      <div class="sidebar-nav">
+        <span class="sidebar-nav-title">Navegação Principal</span>
+        
+        <!-- Link: Início (index.html) -->
+        <a href="index.html" class="nav-link" id="linkNavInicio">
+          <div class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <span class="nav-link-text">Início</span>
+        </a>
+
+        <!-- Link: Visualizar Site (site.html) -->
+        <a href="site.html" class="nav-link" id="linkNavSite">
+          <div class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <span class="nav-link-text">Visualizar Site</span>
+        </a>
+
+        <!-- Link: Vendas (vendas.html) -->
+        <a href="vendas.html" class="nav-link" id="linkNavVendas">
+          <div class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </div>
+          <span class="nav-link-text">Vendas</span>
+        </a>
+
+        <!-- Link: Gestão de Clientes (clientes.html) -->
+        <a href="clientes.html" class="nav-link" id="linkNavClientes">
+          <div class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <span class="nav-link-text">Gestão de Clientes</span>
+        </a>
+
+        <!-- Link: Gestão de Estoque (estoque.html) -->
+        <a href="estoque.html" class="nav-link" id="linkNavEstoque" title="Gestão de Estoque">
+          <div class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path>
+              <path d="M12 22V12"></path>
+              <polyline points="3.29 7 12 12 20.71 7"></polyline>
+              <path d="m7.5 4.27 9 5.15"></path>
+            </svg>
+          </div>
+          <span class="nav-link-text">Gestão de Estoque</span>
+        </a>
+
+        <!-- Link: Equipe (equipe.html - ATIVO) -->
+        <a href="equipe.html" class="nav-link active" id="linkNavEquipe">
+          <div class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 11l-3-3-3 3"></path>
+              <path d="M19 8v8"></path>
+            </svg>
+          </div>
+          <span class="nav-link-text">Equipe</span>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-system-info">
+          <strong>PixelKids Store</strong>
+          <span>Sistema V1.0 &bull; 2026</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 3. Área de Conteúdo Principal -->
+    <main id="mainContent" class="system-main-content">
+      
+      <!-- Cabeçalho com título de rascunho centralizado -->
+      <div class="page-header-wrapper">
+        <h1 class="page-draft-title" id="pageTitle">Equipe</h1>
+        <p class="page-draft-subtitle">Controle de acessos, colaboradores e permissões do sistema</p>
+      </div>
+
+      <!-- Cartão de Rascunho com Placeholder Centralizado -->
+      <div class="draft-card theme-equipe" id="draftCard">
+        <div class="draft-icon-bubble" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 11l-3-3-3 3"></path>
+            <path d="M19 8v8"></path>
+          </svg>
+        </div>
+
+        <h2>Módulo de Gestão da Equipe</h2>
+        <p>
+          Espaço reservado para o cadastro de colaboradores da loja, níveis de permissão (administrador, vendedor, estoquista), comissões de vendas e turnos de trabalho.
+        </p>
+
+        <!-- Grade ilustrativa de wireframe -->
+        <div class="draft-wireframe-grid">
+          <div class="wireframe-box">
+            <div class="wireframe-box-header">
+              <span class="wireframe-box-title">Membros Ativos</span>
+              <span class="wireframe-pill">Rascunho</span>
+            </div>
+            <div class="wireframe-placeholder-line"></div>
+            <div class="wireframe-placeholder-line short"></div>
+          </div>
+
+          <div class="wireframe-box">
+            <div class="wireframe-box-header">
+              <span class="wireframe-box-title">Níveis de Permissão</span>
+              <span class="wireframe-pill">Rascunho</span>
+            </div>
+            <div class="wireframe-placeholder-line"></div>
+            <div class="wireframe-placeholder-line short"></div>
+          </div>
+
+          <div class="wireframe-box">
+            <div class="wireframe-box-header">
+              <span class="wireframe-box-title">Metas da Equipe</span>
+              <span class="wireframe-pill">Rascunho</span>
+            </div>
+            <div class="wireframe-placeholder-line"></div>
+            <div class="wireframe-placeholder-line short"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Scripts Interativos -->
+  <script src="script.js"></script>
+</body>
+</html>

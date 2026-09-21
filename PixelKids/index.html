@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelKids - Sistema de Gestão</title>
+  <meta name="description" content="Layout e sistema interno de gestão para a loja PixelKids com navegação completa, identidade visual inspirada na marca e design responsivo.">
+  <meta property="og:title" content="PixelKids - Sistema de Gestão">
+  <meta property="og:description" content="Layout e sistema interno de gestão para a loja PixelKids com navegação completa, identidade visual inspirada na marca e design responsivo.">
+  
+  <!-- Fontes Google para tipografia lúdica e moderna da marca -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" href="public\favicon.ico" type="image/x-icon">
+
+  <!-- Folha de Estilos Unificada -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pixel-bg-pattern">
+
+  <!-- ========================================================================
+       PÁGINA 1: Tela Inicial (100% da tela, sem cabeçalho ou menu lateral)
+       ======================================================================== -->
+  <main id="homeMain" class="home-page">
+    
+    <!-- Elementos visuais lúdicos no fundo (estrelinhas e pixels decorativos) -->
+    <div class="floating-decor top-left" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <rect x="0" y="0" width="14" height="14" fill="var(--color-primary)" />
+        <rect x="18" y="18" width="14" height="14" fill="var(--color-yellow)" />
+        <rect x="0" y="32" width="10" height="10" fill="var(--color-purple)" />
+      </svg>
+    </div>
+    
+    <div class="floating-decor top-right" aria-hidden="true">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+        <!-- Nuvenzinha pixel flutuante -->
+        <rect x="14" y="6" width="28" height="6" fill="var(--border-dark)" />
+        <rect x="6" y="12" width="44" height="18" fill="var(--border-dark)" />
+        <rect x="14" y="12" width="28" height="12" fill="#ffffff" />
+        <rect x="8" y="16" width="40" height="8" fill="#ffffff" />
+        <circle cx="20" cy="20" r="2" fill="var(--color-pink)" />
+        <circle cx="36" cy="20" r="2" fill="var(--color-pink)" />
+      </svg>
+    </div>
+
+    <div class="floating-decor bottom-left" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <rect x="8" y="8" width="16" height="16" fill="var(--color-green)" rx="2"/>
+        <rect x="24" y="0" width="10" height="10" fill="var(--color-secondary)" rx="1"/>
+      </svg>
+    </div>
+
+    <div class="floating-decor bottom-right" aria-hidden="true">
+      <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+        <!-- Balãozinho pixel -->
+        <circle cx="22" cy="18" r="14" fill="var(--color-secondary)" stroke="var(--border-dark)" stroke-width="2"/>
+        <path d="M 22 32 L 20 44 L 24 44" stroke="var(--border-dark)" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- Bloco Centralizado da Home -->
+    <div id="homeCard" class="home-card">
+
+      <!-- Espaço/Placeholder de Destaque para o Logotipo PixelKids -->
+      <div id="logoContainer" class="home-logo-container">
+        <img src="public\Logotipo PK.jpeg" alt="Logotipo PixelKids - Doce Moda Infantil" class="home-logo-img" id="homeLogoImage">
+      </div>
+
+      <!-- Mensagem de Boas-Vindas Amigável -->
+      <header class="home-welcome-message" id="welcomeSection">
+        <h1 id="welcomeTitle">Olá, Equipe PixelKids!</h1>
+        <p id="welcomeDescription">
+          Boas vindas ao painel central. Selecione um dos módulos abaixo:
+        </p>
+      </header>
+
+      <!-- Grade com os 5 Grandes Botões de Navegação -->
+      <nav id="homeNavGrid" class="nav-buttons-grid" aria-label="Navegação Principal do Sistema">
+        
+        <!-- Botão 1: Visualizar Site -->
+        <a href="site.html" id="btnNavSite" class="big-nav-button btn-theme-site" title="Abrir vitrine e catálogo da loja">
+          <div class="button-icon-wrapper" aria-hidden="true">
+            <!-- Ícone Globo / Loja Virtual -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <span class="button-label">Visualizar Site</span>
+          <span class="button-subtext">Vitrine e Catálogo</span>
+        </a>
+
+        <!-- Botão 2: Vendas -->
+        <a href="vendas.html" id="btnNavVendas" class="big-nav-button btn-theme-vendas" title="Acessar o módulo de vendas">
+          <div class="button-icon-wrapper" aria-hidden="true">
+            <!-- Ícone Carrinho / Vendas -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </div>
+          <span class="button-label">Vendas</span>
+          <span class="button-subtext">Pedidos e PDV</span>
+        </a>
+
+        <!-- Botão 3: Gestão de Clientes -->
+        <a href="clientes.html" id="btnNavClientes" class="big-nav-button btn-theme-clientes" title="Gerenciar cadastro de clientes e contatos">
+          <div class="button-icon-wrapper" aria-hidden="true">
+            <!-- Ícone Clientes / Usuários -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <span class="button-label">Gestão de Clientes</span>
+          <span class="button-subtext">Cadastro e Fidelidade</span>
+        </a>
+
+        <!-- Botão 4: Gestão de Estoque -->
+        <a href="estoque.html" id="btnNavEstoque" class="big-nav-button btn-theme-estoque" title="Controle e movimentação de estoque">
+          <div class="button-icon-wrapper" aria-hidden="true">
+            <!-- Ícone Estoque / Pacotes -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path>
+              <path d="M12 22V12"></path>
+              <polyline points="3.29 7 12 12 20.71 7"></polyline>
+              <path d="m7.5 4.27 9 5.15"></path>
+            </svg>
+          </div>
+          <span class="button-label">Gestão de Estoque</span>
+          <span class="button-subtext">Peças e Grade</span>
+        </a>
+
+        <!-- Botão 5: Equipe -->
+        <a href="equipe.html" id="btnNavEquipe" class="big-nav-button btn-theme-equipe" title="Acessar equipe e colaboradores">
+          <div class="button-icon-wrapper" aria-hidden="true">
+            <!-- Ícone Equipe / Crachá / Medalha -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 11l-3-3-3 3"></path>
+              <path d="M19 8v8"></path>
+            </svg>
+          </div>
+          <span class="button-label">Equipe</span>
+          <span class="button-subtext">Colaboradores</span>
+        </a>
+
+      </nav>
+
+      <!-- Rodapé informativo sutil -->
+      <footer class="home-footer-note" id="homeFooter">
+        <span>PixelKids &bull; Moda Infantil Atacado e Varejo</span>
+        <span>&bull;</span>
+        <span>Versão 1.0 (Rascunho de Layout)</span>
+      </footer>
+
+    </div>
+
+  </main>
+
+  <!-- Scripts Interativos -->
+  <script src="script.js"></script>
+</body>
+</html>

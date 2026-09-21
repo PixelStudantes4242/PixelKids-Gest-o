@@ -1,0 +1,6 @@
+{
+  "name": "PixelKids - Sistema de Gestão",
+  "description": "Layout e sistema interno de gestão para a loja PixelKids com navegação completa, identidade visual inspirada na marca e design responsivo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
