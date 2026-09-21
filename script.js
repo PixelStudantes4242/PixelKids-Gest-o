@@ -26,10 +26,13 @@ if (document.readyState === 'loading') {
  */
 function initAuth() {
   const currentPath = window.location.pathname;
-  const isLoginPage = currentPath.endsWith('login.html');
+  const isLoginPage = Boolean(document.getElementById('loginForm')) || currentPath.endsWith('login.html') || currentPath.includes('login');
 
   // Tratamento da tela de Login (login.html)
   if (isLoginPage) {
+    // Ao entrar na tela de login, limpa a sessão anterior para permitir novo acesso
+    sessionStorage.removeItem('pixelkids_logged_in');
+
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
       loginForm.addEventListener('submit', (e) => {

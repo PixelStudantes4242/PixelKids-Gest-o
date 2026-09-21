@@ -12,7 +12,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="public/favicon.ico" type="image/x-icon">
+
+  <!-- Redirecionamento imediato para a tela de login se não autenticado -->
+  <script>
+    if (sessionStorage.getItem('pixelkids_logged_in') !== 'true') {
+      window.location.replace('login.html');
+    }
+  </script>
 
   <!-- Folha de Estilos Unificada -->
   <link rel="stylesheet" href="style.css">
@@ -65,7 +72,7 @@
 
       <!-- Espaço/Placeholder de Destaque para o Logotipo PixelKids -->
       <div id="logoContainer" class="home-logo-container">
-        <img src="/Logotipo%20PK.jpeg" alt="Logotipo PixelKids - Doce Moda Infantil" class="home-logo-img" id="homeLogoImage">
+        <img src="public/Logotipo PK.jpeg" alt="Logotipo PixelKids - Doce Moda Infantil" class="home-logo-img" id="homeLogoImage">
       </div>
 
       <!-- Mensagem de Boas-Vindas Amigável -->
@@ -166,6 +173,6 @@
   </main>
 
   <!-- Scripts Interativos -->
-  <script type="module" src="/script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
