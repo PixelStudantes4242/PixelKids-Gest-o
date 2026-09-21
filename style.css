@@ -1,0 +1,1415 @@
+/* ==========================================================================
+   PixelKids - Sistema de Gestão Interna
+   Folha de Estilos Unificada (style.css)
+   
+   Identidade visual inspirada na marca PixelKids:
+   - Cores vibrantes da logo (Azul, Laranja, Vermelho, Amarelo, Verde, Roxo)
+   - Contraste moderno sobre fundo limpo off-white
+   - Estética híbrida: elementos de pixel art (sombras blocadas, detalhes retos)
+     com formas arredondadas e amigáveis (letras bolha, cards suaves)
+   - Totalmente gerenciado por variáveis CSS (:root)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variáveis CSS Globais (:root)
+   Qualquer alteração nestas variáveis reflete instantaneamente em todo o site.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Cores Principais da Marca PixelKids */
+  --color-primary: #0096e6;           /* Azul vibrante (KIDS / PIXEL) */
+  --color-primary-hover: #007bc0;
+  --color-primary-light: #e6f5ff;
+  --color-primary-contrast: #ffffff;
+
+  --color-secondary: #ff7b1a;         /* Laranja enérgico (D de KIDS / PIXEL) */
+  --color-secondary-hover: #e66505;
+  --color-secondary-light: #fff3ea;
+  --color-secondary-contrast: #ffffff;
+
+  /* Paleta Complementar da Logo */
+  --color-red: #e52535;               /* Vermelho alegre (P e arco-íris) */
+  --color-red-hover: #c91b2a;
+  --color-red-light: #fdebee;
+
+  --color-yellow: #ffd000;            /* Amarelo dourado (sol e estrelas) */
+  --color-yellow-hover: #e6bb00;
+  --color-yellow-light: #fffce6;
+
+  --color-green: #43b02a;             /* Verde doce (INFANTIL e folhas) */
+  --color-green-hover: #379522;
+  --color-green-light: #edf8eb;
+
+  --color-purple: #8e44ad;            /* Roxo lúdico (S de KIDS e balão) */
+  --color-purple-hover: #783495;
+  --color-purple-light: #f6edf9;
+
+  --color-pink: #e91e63;              /* Rosa chiclete (DOCE e corações) */
+  --color-pink-hover: #d01454;
+  --color-pink-light: #fde8f0;
+
+  --color-cyan: #00a3e0;              /* Turquesa da fita Atacado */
+  --color-cyan-light: #e6f7fc;
+
+  /* Fundos e Superfícies (Off-white limpo e profissional) */
+  --bg-body: #f8fafc;                 /* Fundo geral limpo e descansado */
+  --bg-card: #ffffff;                 /* Superfície dos cartões e caixas */
+  --bg-sidebar: #ffffff;              /* Fundo do menu lateral */
+  --bg-header: #ffffff;               /* Fundo do cabeçalho */
+  --bg-alt: #f1f5f9;                  /* Fundo secundário / hover suave */
+
+  /* Tipografia e Textos */
+  --text-main: #182c4f;               /* Azul-marinho profundo da marca */
+  --text-muted: #64748b;              /* Texto secundário e legendas */
+  --text-light: #94a3b8;              /* Placeholders e desabilitados */
+  --text-inverse: #ffffff;            /* Texto sobre fundos escuros/vibrantes */
+
+  /* Bordas e Contornos Estruturais */
+  --border-color: #e2e8f0;            /* Linha sutil de divisão */
+  --border-dark: #182c4f;             /* Borda escura clássica da PixelKids */
+  --border-width-pixel: 3px;          /* Espessura das bordas pixel art */
+  --border-width-fine: 1px;
+
+  /* Sombras Blocadas (Pixel Art) e Suaves */
+  --shadow-pixel: 4px 4px 0px var(--border-dark);
+  --shadow-pixel-sm: 2px 2px 0px var(--border-dark);
+  --shadow-pixel-lg: 6px 6px 0px var(--border-dark);
+  --shadow-pixel-hover: 6px 6px 0px var(--border-dark);
+  --shadow-pixel-active: 1px 1px 0px var(--border-dark);
+  --shadow-soft: 0 10px 25px -5px rgba(24, 44, 79, 0.07), 0 8px 10px -6px rgba(24, 44, 79, 0.04);
+
+  /* Medidas Estruturais do Layout */
+  --header-height: 72px;
+  --sidebar-reduced-width: 76px;
+  --sidebar-expanded-width: 250px;
+  --sidebar-width: var(--sidebar-reduced-width);
+
+  /* Raios de Arredondamento Amigáveis */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-pill: 9999px;
+
+  /* Tipografia */
+  --font-display: 'Fredoka', 'Quicksand', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-pixel: 'Silkscreen', monospace;
+
+  /* Transições Suaves */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset Básico & Estilos Globais
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background-color: var(--bg-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Títulos com a fonte amigável da PixelKids */
+h1, h2, h3, h4, .brand-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+/* Padrão de fundo lúdico sutil (pixel dots) para enriquecer o visual */
+.pixel-bg-pattern {
+  background-color: var(--bg-body);
+  background-image: radial-gradient(var(--border-color) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+/* --------------------------------------------------------------------------
+   3. PÁGINA 1: Tela Inicial (index.html)
+   100% da tela, sem cabeçalho ou menu lateral, centro com boas-vindas e botões
+   -------------------------------------------------------------------------- */
+.home-page {
+  min-height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.75rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Decorações flutuantes sutis no fundo da tela inicial */
+.floating-decor {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.75;
+  transition: transform var(--transition-normal);
+}
+
+.floating-decor.top-left { top: 30px; left: 40px; }
+.floating-decor.top-right { top: 40px; right: 50px; }
+.floating-decor.bottom-left { bottom: 40px; left: 50px; }
+.floating-decor.bottom-right { bottom: 35px; right: 40px; }
+
+/* Bloco central da Home */
+.home-card {
+  width: 100%;
+  max-width: 960px;
+  background-color: var(--bg-card);
+  border: var(--border-width-pixel) solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pixel-lg);
+  padding: 1.25rem 1.25rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  animation: fadeInDown 0.4s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.8; }
+}
+
+/* Espaço de Destaque da Logotipo */
+.home-logo-container {
+  max-width: 440px;
+  margin: 0 auto 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
+  transition: transform var(--transition-bounce);
+}
+
+.home-logo-container:hover {
+  transform: scale(1.02);
+}
+
+.home-logo-img {
+  width: 50%;
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+}
+
+/* Mensagem de Boas-Vindas Amigável */
+.home-welcome-message {
+  margin-bottom: 1.25rem;
+}
+
+.home-welcome-message h1 {
+  font-size: 1.85rem;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.home-welcome-message p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* Grade com os 5 Grandes Botões de Navegação */
+.nav-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+/* Estilização individual dos Grandes Botões da Home */
+.big-nav-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.35rem 1rem;
+  background-color: var(--bg-card);
+  border: var(--border-width-pixel) solid var(--border-dark);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pixel);
+  text-decoration: none;
+  color: var(--text-main);
+  transition: all var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.big-nav-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background-color: var(--btn-accent, var(--color-primary));
+}
+
+/* Ícone estilizado com fundo colorido e borda */
+.big-nav-button .button-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-dark);
+  background-color: var(--btn-light, var(--color-primary-light));
+  color: var(--btn-accent, var(--color-primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+  box-shadow: var(--shadow-pixel-sm);
+  transition: all var(--transition-bounce);
+}
+
+.big-nav-button .button-icon-wrapper svg {
+  width: 30px;
+  height: 30px;
+  stroke-width: 2.3;
+}
+
+/* Rótulo do botão */
+.big-nav-button .button-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.big-nav-button .button-subtext {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Efeitos de :hover e foco com "leve pulo" e preenchimento */
+.big-nav-button:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-pixel-hover);
+  border-color: var(--border-dark);
+}
+
+.big-nav-button:hover .button-icon-wrapper {
+  transform: scale(1.1) rotate(-3deg);
+  background-color: var(--btn-accent, var(--color-primary));
+  color: var(--text-inverse);
+}
+
+.big-nav-button:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-pixel-active);
+}
+
+/* Cores temáticas para cada um dos 5 botões */
+.btn-theme-site {
+  --btn-accent: var(--color-primary);
+  --btn-light: var(--color-primary-light);
+}
+
+.btn-theme-vendas {
+  --btn-accent: var(--color-green);
+  --btn-light: var(--color-green-light);
+}
+
+.btn-theme-clientes {
+  --btn-accent: var(--color-purple);
+  --btn-light: var(--color-purple-light);
+}
+
+.btn-theme-estoque {
+  --btn-accent: var(--color-secondary);
+  --btn-light: var(--color-secondary-light);
+}
+
+.btn-theme-equipe {
+  --btn-accent: var(--color-pink);
+  --btn-light: var(--color-pink-light);
+}
+
+/* Rodapé da tela inicial */
+.home-footer-note {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--border-color);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   4. PÁGINAS DO SISTEMA (site.html, vendas.html, clientes.html, estoque.html, equipe.html)
+   Estrutura base compartilhada:
+   - 1. Cabeçalho Fixo no Topo (Header)
+   - 2. Menu Lateral Esquerdo Fixo (Sidebar)
+   - 3. Área de Conteúdo Principal
+   -------------------------------------------------------------------------- */
+.system-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4.1 Cabeçalho Fixo (Header) */
+.system-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background-color: var(--bg-header);
+  border-bottom: var(--border-width-pixel) solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 1000;
+  box-shadow: 0 2px 0px rgba(24, 44, 79, 0.05);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Botão de menu hamburguer para telas menores ou toggle da barra lateral */
+.sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-dark);
+  background-color: var(--bg-alt);
+  color: var(--text-main);
+  box-shadow: var(--shadow-pixel-sm);
+  transition: all var(--transition-fast);
+}
+
+.sidebar-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pixel);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.sidebar-toggle-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Logotipo no cabeçalho */
+.header-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.header-logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.header-brand-badge {
+  display: inline-block;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  background-color: var(--color-cyan);
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  border: 1.5px solid var(--border-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Indicador central do cabeçalho */
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-page-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-alt);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.header-page-indicator .active-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+/* Canto direito: Usuário logado "PixelKidsADM" */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 8px;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-pixel-sm);
+  transition: transform var(--transition-fast);
+}
+
+.user-profile-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pixel);
+}
+
+.user-avatar-wrapper {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  border: 2px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.user-avatar-wrapper svg {
+  width: 20px;
+  height: 20px;
+}
+
+.user-status-indicator {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-green);
+  border: 2px solid var(--border-dark);
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.user-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+.user-role {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Quando a barra lateral está expandida via acionamento do botão no cabeçalho */
+body.sidebar-expanded {
+  --sidebar-width: var(--sidebar-expanded-width);
+}
+
+/* 4.2 Menu Lateral Esquerdo Fixo (Sidebar) */
+.system-sidebar {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background-color: var(--bg-sidebar);
+  border-right: var(--border-width-pixel) solid var(--border-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem 0.5rem;
+  z-index: 900;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width var(--transition-normal), transform var(--transition-normal), padding var(--transition-normal);
+}
+
+body.sidebar-expanded .system-sidebar {
+  padding: 1.5rem 1rem;
+}
+
+/* Seção de Navegação Principal */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.sidebar-nav-title {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--text-light);
+  padding: 0 0.75rem 0.5rem 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: none; /* Removido na versão compactada conforme solicitado */
+  white-space: nowrap;
+}
+
+body.sidebar-expanded .sidebar-nav-title {
+  display: block;
+}
+
+/* Itens de navegação da Sidebar */
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centralizado quando reduzido */
+  gap: 0;
+  padding: 8px 0;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+  transition: all var(--transition-fast);
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+}
+
+body.sidebar-expanded .nav-link {
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+}
+
+.nav-link-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-alt);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border-color);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+body.sidebar-expanded .nav-link-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+}
+
+.nav-link-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.2;
+}
+
+/* Na versão compactada, remove a descrição dos menus deixando apenas os ícones */
+.nav-link-text {
+  display: none;
+  flex-grow: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+body.sidebar-expanded .nav-link-text {
+  display: inline-block;
+  opacity: 1;
+}
+
+/* Tooltip flutuante elegante na versão compactada para exibir o nome do módulo ao passar o mouse */
+body:not(.sidebar-expanded) .nav-link::before {
+  content: attr(title);
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--border-dark);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: var(--radius-xs);
+  font-size: 0.8rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  z-index: 1000;
+  box-shadow: var(--shadow-pixel);
+}
+
+body:not(.sidebar-expanded) .nav-link:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(2px);
+}
+
+/* Efeito de :hover no menu lateral (leve pulo e preenchimento) */
+.nav-link:hover {
+  background-color: var(--bg-alt);
+  border-color: var(--border-dark);
+  transform: translateY(-2px);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-pixel-sm);
+}
+
+body.sidebar-expanded .nav-link:hover {
+  transform: translateX(4px);
+}
+
+.nav-link:hover .nav-link-icon {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--border-dark);
+}
+
+/* Estado Ativo (Active State) da página atual */
+.nav-link.active {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--border-dark);
+  box-shadow: var(--shadow-pixel-sm);
+}
+
+.nav-link.active .nav-link-icon {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--border-dark);
+}
+
+/* Indicador visual de item ativo */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 22px;
+  background-color: var(--color-secondary);
+  border-radius: 4px;
+  border: 1px solid var(--border-dark);
+}
+
+body.sidebar-expanded .nav-link.active::after {
+  right: -10px;
+  width: 6px;
+  height: 18px;
+}
+
+/* Cores temáticas correspondentes para cada item do menu lateral */
+#linkNavSite:hover .nav-link-icon,
+#linkNavSite.active .nav-link-icon {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+#linkNavSite.active {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+#linkNavVendas:hover .nav-link-icon,
+#linkNavVendas.active .nav-link-icon {
+  background-color: var(--color-green);
+  color: #ffffff;
+}
+#linkNavVendas.active {
+  background-color: var(--color-green-light);
+  color: var(--color-green);
+}
+
+#linkNavClientes:hover .nav-link-icon,
+#linkNavClientes.active .nav-link-icon {
+  background-color: var(--color-purple);
+  color: #ffffff;
+}
+#linkNavClientes.active {
+  background-color: var(--color-purple-light);
+  color: var(--color-purple);
+}
+
+/* Gestão de Estoque - Cor Laranja Temática */
+#linkNavEstoque:hover .nav-link-icon,
+#linkNavEstoque.active .nav-link-icon {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+#linkNavEstoque.active {
+  background-color: var(--color-secondary-light);
+  color: var(--color-secondary);
+}
+#linkNavEstoque.active::after {
+  background-color: var(--color-secondary);
+}
+
+#linkNavEquipe:hover .nav-link-icon,
+#linkNavEquipe.active .nav-link-icon {
+  background-color: var(--color-pink);
+  color: #ffffff;
+}
+#linkNavEquipe.active {
+  background-color: var(--color-pink-light);
+  color: var(--color-pink);
+}
+
+/* Rodapé do Menu Lateral */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.sidebar-system-info {
+  background-color: var(--bg-alt);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  display: none; /* Oculto na visualização compactada */
+}
+
+body.sidebar-expanded .sidebar-system-info {
+  display: block;
+}
+
+.sidebar-system-info strong {
+  display: block;
+  font-family: var(--font-display);
+  color: var(--text-main);
+  font-size: 0.85rem;
+}
+
+/* 4.3 Área de Conteúdo Principal */
+.system-main-content {
+  margin-left: var(--sidebar-width);
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left var(--transition-normal);
+}
+
+/* Cabeçalho interno da página */
+.page-header-wrapper {
+  margin-bottom: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Título de Rascunho Centralizado (Conforme solicitado) */
+.page-draft-title {
+  font-size: 2.25rem;
+  color: var(--text-main);
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 0.5rem;
+}
+
+.page-draft-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-green));
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-dark);
+}
+
+.page-draft-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-top: 0.75rem;
+}
+
+/* Cartão de Rascunho / Placeholder de Conteúdo */
+.draft-card {
+  background-color: var(--bg-card);
+  border: var(--border-width-pixel) solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pixel);
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.draft-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-primary) 0px,
+    var(--color-primary) 20px,
+    var(--color-secondary) 20px,
+    var(--color-secondary) 40px,
+    var(--color-green) 40px,
+    var(--color-green) 60px,
+    var(--color-purple) 60px,
+    var(--color-purple) 80px,
+    var(--color-yellow) 80px,
+    var(--color-yellow) 100px,
+    var(--color-red) 100px,
+    var(--color-red) 120px
+  );
+}
+
+.draft-icon-bubble {
+  width: 84px;
+  height: 84px;
+  border-radius: var(--radius-lg);
+  background-color: var(--page-theme-light, var(--color-primary-light));
+  color: var(--page-theme-color, var(--color-primary));
+  border: 3px solid var(--border-dark);
+  box-shadow: var(--shadow-pixel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+  transition: transform var(--transition-bounce);
+}
+
+.draft-icon-bubble:hover {
+  transform: rotate(6deg) scale(1.08);
+}
+
+.draft-icon-bubble svg {
+  width: 44px;
+  height: 44px;
+  stroke-width: 2.2;
+}
+
+.draft-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.draft-card p {
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto 2rem auto;
+  font-size: 1.05rem;
+}
+
+/* Caixas de Prévia / Wireframe do Rascunho (Cards simulando onde ficarão métricas/tabelas) */
+.draft-wireframe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.wireframe-box {
+  background-color: var(--bg-alt);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: all var(--transition-fast);
+}
+
+.wireframe-box:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+.wireframe-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.wireframe-box-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.wireframe-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--bg-card);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-dark);
+  color: var(--text-muted);
+}
+
+.wireframe-placeholder-line {
+  height: 8px;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.wireframe-placeholder-line.short {
+  width: 60%;
+}
+
+/* Temas específicos para as páginas de rascunho */
+.theme-site {
+  --page-theme-color: var(--color-primary);
+  --page-theme-light: var(--color-primary-light);
+}
+
+.theme-vendas {
+  --page-theme-color: var(--color-green);
+  --page-theme-light: var(--color-green-light);
+}
+
+.theme-clientes {
+  --page-theme-color: var(--color-purple);
+  --page-theme-light: var(--color-purple-light);
+}
+
+.theme-estoque {
+  --page-theme-color: var(--color-secondary);
+  --page-theme-light: var(--color-secondary-light);
+}
+
+.theme-equipe {
+  --page-theme-color: var(--color-pink);
+  --page-theme-light: var(--color-pink-light);
+}
+
+/* --------------------------------------------------------------------------
+   5. Responsividade (Tablets e Dispositivos Móveis)
+   -------------------------------------------------------------------------- */
+/* Overlay escuro para quando a barra lateral estiver aberta em telas pequenas */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(24, 44, 79, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 850;
+  display: none;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.sidebar-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  :root {
+    --sidebar-width: 240px;
+  }
+
+  .home-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .nav-buttons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .system-main-content {
+    padding: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Sidebar entra em modo Drawer deslizante */
+  .system-sidebar {
+    width: 260px !important;
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-pixel-lg);
+    padding: 1.5rem 1rem !important;
+  }
+
+  .system-sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  /* No drawer móvel, exibe o texto e títulos para facilitar a navegação */
+  .system-sidebar .nav-link-text {
+    display: inline-block !important;
+    opacity: 1 !important;
+  }
+
+  .system-sidebar .sidebar-nav-title {
+    display: block !important;
+  }
+
+  .system-sidebar .nav-link {
+    justify-content: flex-start !important;
+    padding: 10px 14px !important;
+    gap: 12px !important;
+  }
+
+  .system-sidebar .sidebar-system-info {
+    display: block !important;
+  }
+
+  .system-main-content {
+    margin-left: 0 !important;
+    padding: 1.25rem;
+  }
+
+  .header-center {
+    display: none;
+  }
+
+  .header-right .logout-text {
+    display: none;
+  }
+
+  .nav-buttons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .home-welcome-message h1 {
+    font-size: 1.5rem;
+  }
+
+  .page-draft-title {
+    font-size: 1.75rem;
+  }
+
+  .draft-card {
+    padding: 2rem 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Imagens de Identidade Visual e Ícones do Sistema
+   -------------------------------------------------------------------------- */
+.header-logo-img {
+  height: 40px;
+  max-width: 170px;
+  object-fit: contain;
+  display: block;
+}
+
+.nav-button-icon-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+
+.sidebar-stock-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+.draft-stock-icon-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Botões e Links de Logout / Sair */
+.header-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: var(--bg-alt);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow-pixel-sm);
+  transition: all var(--transition-fast);
+}
+
+.header-logout-btn:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pixel);
+}
+
+.logout-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  text-decoration: none;
+  box-shadow: var(--shadow-pixel-sm);
+  transition: all var(--transition-fast);
+}
+
+.logout-link-btn:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pixel);
+}
+
+/* --------------------------------------------------------------------------
+   7. TELA DE LOGIN (login.html)
+   -------------------------------------------------------------------------- */
+.login-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.login-page {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 10;
+}
+
+.login-card {
+  background-color: var(--bg-card);
+  border: var(--border-width-pixel) solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pixel-lg);
+  padding: 1rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.login-logo-container {
+  margin: 1.25rem 0 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.login-logo-img {
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.login-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.35rem;
+}
+
+.login-header p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 1.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.pixel-input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-dark);
+  background-color: var(--bg-alt);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text-main);
+  box-shadow: inset 0 2px 4px rgba(24, 44, 79, 0.05);
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.pixel-input:focus {
+  background-color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.login-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background-color: var(--color-yellow-light);
+  border: 1.5px dashed var(--color-yellow);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.login-tip svg {
+  flex-shrink: 0;
+  color: #b45309;
+  margin-top: 2px;
+}
+
+.btn-pixel-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 20px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-pixel);
+  transition: all var(--transition-bounce);
+  margin-top: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-pixel-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-pixel-hover);
+  background-color: #274982;
+}
+
+.btn-pixel-primary:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-pixel-active);
+}
+
+.login-footer-note {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-color);
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
