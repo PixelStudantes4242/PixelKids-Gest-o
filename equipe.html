@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PixelKids - Equipe</title>
-  <meta name="description" content="Gestão da equipe e colaboradores da loja PixelKids.">
+  <title>PixelKids - Gestão de Equipe & Fornecedores</title>
+  <meta name="description" content="Gestão completa de colaboradores, acessos e cadastro de fornecedores parceiros da PixelKids.">
   
   <!-- Fontes Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,8 +36,8 @@
 
       <div class="header-center">
         <div class="header-page-indicator">
-          <span class="active-dot" style="background-color: var(--color-pink);"></span>
-          <span>Módulo: <strong>Equipe</strong></span>
+          <span class="active-dot" style="background-color: #8b5cf6;"></span>
+          <span>Módulo: <strong>Equipe & Fornecedores</strong></span>
         </div>
       </div>
 
@@ -71,7 +71,7 @@
 
     <!-- 2. Menu Lateral Esquerdo (Sidebar) Fixo e Sempre Visível -->
     <aside id="mainSidebar" class="system-sidebar" aria-label="Menu Lateral do Sistema">
-      <div class="sidebar-nav">
+      <nav class="sidebar-nav" aria-label="Navegação Principal">
         <span class="sidebar-nav-title">Navegação Principal</span>
         
         <!-- Link: Início (index.html) -->
@@ -136,9 +136,9 @@
         </a>
 
         <!-- Link: Equipe (equipe.html - ATIVO) -->
-        <a href="equipe.html" class="nav-link active" id="linkNavEquipe">
+        <a href="equipe.html" class="nav-link active" id="linkNavEquipe" title="Equipe & Fornecedores">
           <div class="nav-link-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
               <circle cx="9" cy="7" r="4"></circle>
               <path d="M22 11l-3-3-3 3"></path>
@@ -147,7 +147,7 @@
           </div>
           <span class="nav-link-text">Equipe</span>
         </a>
-      </div>
+      </nav>
 
       <div class="sidebar-footer">
         <div class="sidebar-system-info">
@@ -160,62 +160,789 @@
     <!-- 3. Área de Conteúdo Principal -->
     <main id="mainContent" class="system-main-content">
       
-      <!-- Cabeçalho com título de rascunho centralizado -->
-      <div class="page-header-wrapper">
-        <h1 class="page-draft-title" id="pageTitle">Equipe</h1>
-        <p class="page-draft-subtitle">Controle de acessos, colaboradores e permissões do sistema</p>
+      <!-- Cabeçalho Principal da Página -->
+      <div class="page-title-banner">
+        <div class="title-banner-content">
+          <div class="banner-badge">
+            <span class="badge-dot"></span>
+            <span>Gestão de Pessoas & Parceiros</span>
+          </div>
+          <h1 class="page-main-title">Equipe & Fornecedores</h1>
+          <p class="page-main-description">
+            Gerenciamento de colaboradores da loja, controle de credenciais/acessos e cadastro detalhado dos fornecedores têxteis parceiros da PixelKids.
+          </p>
+        </div>
       </div>
 
-      <!-- Cartão de Rascunho com Placeholder Centralizado -->
-      <div class="draft-card theme-equipe" id="draftCard">
-        <div class="draft-icon-bubble" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M22 11l-3-3-3 3"></path>
-            <path d="M19 8v8"></path>
-          </svg>
-        </div>
-
-        <h2>Módulo de Gestão da Equipe</h2>
-        <p>
-          Espaço reservado para o cadastro de colaboradores da loja, níveis de permissão (administrador, vendedor, estoquista), comissões de vendas e turnos de trabalho.
-        </p>
-
-        <!-- Grade ilustrativa de wireframe -->
-        <div class="draft-wireframe-grid">
-          <div class="wireframe-box">
-            <div class="wireframe-box-header">
-              <span class="wireframe-box-title">Membros Ativos</span>
-              <span class="wireframe-pill">Rascunho</span>
+      <!-- 4 Cards Estatísticos de Controle -->
+      <section class="estoque-dashboard-grid" aria-label="Painel de Controle Rápido">
+        
+        <!-- Card 1: Colaboradores Ativos -->
+        <article class="stat-card stat-info" role="region" aria-label="Colaboradores Ativos">
+          <div class="stat-card-header">
+            <div class="stat-icon-wrapper" style="background-color: #ede9fe; color: #6d28d9; border-color: var(--border-dark);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
             </div>
-            <div class="wireframe-placeholder-line"></div>
-            <div class="wireframe-placeholder-line short"></div>
+            <span class="stat-status-pill pill-purple">Time Ativo</span>
+          </div>
+          <div class="stat-card-body">
+            <span class="stat-label">Colaboradores Cadastrados</span>
+            <div class="stat-number-wrapper">
+              <span class="stat-number" id="cardTotalFuncionarios">5</span>
+              <span class="stat-unit">membros</span>
+            </div>
+            <p class="stat-help-text">Perfis de acesso ativos para gerenciamento e vendas na loja</p>
+          </div>
+        </article>
+
+        <!-- Card 2: Fornecedores Parceiros -->
+        <article class="stat-card stat-success" role="region" aria-label="Fornecedores Cadastrados">
+          <div class="stat-card-header">
+            <div class="stat-icon-wrapper stat-icon-green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <span class="stat-status-pill pill-success">Parceiros</span>
+          </div>
+          <div class="stat-card-body">
+            <span class="stat-label">Fornecedores Têxteis</span>
+            <div class="stat-number-wrapper">
+              <span class="stat-number" id="cardTotalFornecedores">4</span>
+              <span class="stat-unit">fábricas</span>
+            </div>
+            <p class="stat-help-text">Confecções e distribuidoras cadastradas para suprimentos</p>
+          </div>
+        </article>
+
+        <!-- Card 3: Cargos & Funções -->
+        <article class="stat-card stat-warning" role="region" aria-label="Funções de Loja">
+          <div class="stat-card-header">
+            <div class="stat-icon-wrapper stat-icon-orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <span class="stat-status-pill pill-warning">Cargos</span>
+          </div>
+          <div class="stat-card-body">
+            <span class="stat-label">Funções Operacionais</span>
+            <div class="stat-number-wrapper">
+              <span class="stat-number">5</span>
+              <span class="stat-unit">níveis</span>
+            </div>
+            <p class="stat-help-text">Gerência, Vendas, Caixa, Logística e Administração</p>
+          </div>
+        </article>
+
+        <!-- Card 4: Segurança & Acessos -->
+        <article class="stat-card stat-critical" role="region" aria-label="Segurança de Acessos">
+          <div class="stat-card-header">
+            <div class="stat-icon-wrapper" style="background-color: #ecfdf5; color: #047857; border-color: var(--border-dark);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+            <span class="stat-status-pill pill-blue">Auditoria</span>
+          </div>
+          <div class="stat-card-body">
+            <span class="stat-label">Último Acesso ao Sistema</span>
+            <div class="stat-number-wrapper">
+              <span class="stat-number" style="font-size: 1.25rem;">Hoje às 10:12</span>
+            </div>
+            <p class="stat-help-text">Login registrado por <strong>Marcos Vinícius</strong> (Administrador)</p>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Container das Duas Listas Semelhantes ao Estoque -->
+      <div class="equipe-sections-container">
+        
+        <!-- =================================================================
+             1. SEÇÃO: CADASTRO DE FUNCIONÁRIOS DA LOJA
+             ================================================================= -->
+        <section class="equipe-section-block" id="secaoFuncionarios" aria-labelledby="tituloSecaoFuncionarios">
+          
+          <div class="equipe-section-header">
+            <div class="equipe-section-title-group">
+              <div class="equipe-section-icon icon-purple" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <line x1="19" y1="8" x2="19" y2="14"></line>
+                  <line x1="22" y1="11" x2="16" y2="11"></line>
+                </svg>
+              </div>
+              <div class="equipe-section-titles">
+                <h2 id="tituloSecaoFuncionarios">
+                  Colaboradores da Loja
+                  <span class="section-pill-tag pill-purple">Acessos &amp; Login</span>
+                </h2>
+                <p>Lista de funcionários com credenciais de login, funções na loja e histórico de último acesso.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="wireframe-box">
-            <div class="wireframe-box-header">
-              <span class="wireframe-box-title">Níveis de Permissão</span>
-              <span class="wireframe-pill">Rascunho</span>
+          <!-- Barra de Ferramentas: Busca, Ordenação e Inclusão -->
+          <div class="estoque-toolbar">
+            <div class="toolbar-left-group">
+              
+              <!-- Campo de Busca em Tempo Real -->
+              <div class="search-input-group">
+                <span class="search-icon-wrapper" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                <input 
+                  type="text" 
+                  id="inputBuscaFuncionarios" 
+                  class="estoque-search-input" 
+                  placeholder="Buscar colaborador por nome, função, login ou e-mail..." 
+                  autocomplete="off"
+                  aria-label="Buscar colaboradores da equipe"
+                >
+                <button type="button" id="btnClearSearchFuncionarios" class="btn-clear-search" title="Limpar busca" style="display: none;">
+                  &times;
+                </button>
+              </div>
+
+              <!-- Menu Suspenso de Ordenação -->
+              <div class="filter-dropdown-wrapper">
+                <button type="button" id="btnFiltrarFuncionarios" class="btn-filter-sort" aria-expanded="false" aria-haspopup="true" title="Ordenar colaboradores">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                  </svg>
+                  <span>Ordenar</span>
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+
+                <div class="filter-dropdown-menu" id="dropdownSortFuncionarios" role="menu">
+                  <div class="filter-dropdown-header">
+                    <span>Opções de Ordenação</span>
+                  </div>
+                  <div class="filter-dropdown-options">
+                    <button type="button" class="filter-option-btn active" data-sort-func="padrao">
+                      <span class="option-check">✓</span>
+                      <span class="option-text">Ordem de Cadastro (Padrão)</span>
+                    </button>
+                    <button type="button" class="filter-option-btn" data-sort-func="nome-asc">
+                      <span class="option-check">✓</span>
+                      <span class="option-text">Nome: A &rarr; Z</span>
+                    </button>
+                    <button type="button" class="filter-option-btn" data-sort-func="nome-desc">
+                      <span class="option-check">✓</span>
+                      <span class="option-text">Nome: Z &rarr; A</span>
+                    </button>
+                    <button type="button" class="filter-option-btn" data-sort-func="funcao-asc">
+                      <span class="option-check">✓</span>
+                      <span class="option-text">Função / Cargo: A &rarr; Z</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
             </div>
-            <div class="wireframe-placeholder-line"></div>
-            <div class="wireframe-placeholder-line short"></div>
+
+            <div class="toolbar-right-group">
+              <div class="toolbar-stats-info">
+                <span>Exibindo: <strong id="contadorFuncionarios">5</strong> de <span id="totalFuncionariosBadge">5</span> colaboradores</span>
+              </div>
+
+              <!-- Botão de Cadastro de Funcionário -->
+              <button type="button" id="btnCadastrarFuncionario" class="btn-pixel-action primary-stock" title="Abrir formulário de cadastro de novo colaborador">
+                <span class="btn-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+                <span>Cadastrar Funcionário</span>
+              </button>
+            </div>
           </div>
 
-          <div class="wireframe-box">
-            <div class="wireframe-box-header">
-              <span class="wireframe-box-title">Metas da Equipe</span>
-              <span class="wireframe-pill">Rascunho</span>
-            </div>
-            <div class="wireframe-placeholder-line"></div>
-            <div class="wireframe-placeholder-line short"></div>
+          <!-- Tabela Responsiva de Funcionários -->
+          <div class="table-responsive-container">
+            <table class="pixel-table" id="tabelaFuncionarios" aria-label="Tabela de Colaboradores da Loja">
+              <caption class="sr-only">Tabela de controle e listagem de colaboradores da loja PixelKids com credenciais de login e status de acesso</caption>
+              <thead>
+                <tr>
+                  <th scope="col" style="min-width: 240px;">Nome Completo</th>
+                  <th scope="col" style="width: 170px;">Função / Cargo</th>
+                  <th scope="col" style="width: 160px;">Login de Acesso</th>
+                  <th scope="col" style="min-width: 240px;">Contatos (E-mail &amp; Tel)</th>
+                  <th scope="col" style="width: 190px;">Último Acesso</th>
+                  <th scope="col" style="width: 140px;" class="col-actions">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="funcionariosTableBody">
+                <!-- Linhas populadas via JavaScript com semântica estrita de dataset -->
+              </tbody>
+            </table>
           </div>
-        </div>
+
+        </section>
+
+
+        <!-- =================================================================
+             2. SEÇÃO: CADASTRO DE FORNECEDORES
+             ================================================================= -->
+        <section class="equipe-section-block" id="secaoFornecedores" aria-labelledby="tituloSecaoFornecedores">
+          
+          <div class="equipe-section-header">
+            <div class="equipe-section-title-group">
+              <div class="equipe-section-icon icon-blue" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </div>
+              <div class="equipe-section-titles">
+                <h2 id="tituloSecaoFornecedores">
+                  Fornecedores Parceiros
+                  <span class="section-pill-tag pill-blue">Cadeia Têxtil</span>
+                </h2>
+                <p>Cadastro de fábricas, confecções e parceiros comerciais de suprimento de roupas e acessórios infantis.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra de Ferramentas de Fornecedores -->
+          <div class="estoque-toolbar">
+            <div class="toolbar-left-group">
+              
+              <!-- Busca de Fornecedores -->
+              <div class="search-input-group">
+                <span class="search-icon-wrapper" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                <input 
+                  type="text" 
+                  id="inputBuscaFornecedores" 
+                  class="estoque-search-input" 
+                  placeholder="Buscar fornecedor por razão social, CNPJ, cidade ou e-mail..." 
+                  autocomplete="off"
+                  aria-label="Buscar fornecedores parceiros"
+                >
+                <button type="button" id="btnClearSearchFornecedores" class="btn-clear-search" title="Limpar busca" style="display: none;">
+                  &times;
+                </button>
+              </div>
+
+              <!-- Ordenação de Fornecedores -->
+              <div class="filter-dropdown-wrapper">
+                <button type="button" id="btnFiltrarFornecedores" class="btn-filter-sort" aria-expanded="false" aria-haspopup="true" title="Ordenar fornecedores">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                  </svg>
+                  <span>Ordenar</span>
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+
+                <div class="filter-dropdown-menu" id="dropdownSortFornecedores" role="menu">
+                  <div class="filter-dropdown-header">
+                    <span>Opções de Ordenação</span>
+                  </div>
+                  <div class="filter-dropdown-options">
+                    <button type="button" class="filter-option-btn active" data-sort-forn="padrao">
+                      <span class="option-check">✓</span>
+                      <span class="option-text">Ordem de Cadastro (Padrão)</span>
+                    </button>
+                    <button type="button" class="filter-option-btn" data-sort-forn="nome-asc">
+                      <span class="option-check">✓</span>
+                      <span class="option-text">Fornecedor: A &rarr; Z</span>
+                    </button>
+                    <button type="button" class="filter-option-btn" data-sort-forn="nome-desc">
+                      <span class="option-check">✓</span>
+                      <span class="option-text">Fornecedor: Z &rarr; A</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="toolbar-right-group">
+              <div class="toolbar-stats-info">
+                <span>Exibindo: <strong id="contadorFornecedores">4</strong> de <span id="totalFornecedoresBadge">4</span> fornecedores</span>
+              </div>
+
+              <!-- Botão de Cadastro de Fornecedor -->
+              <button type="button" id="btnCadastrarFornecedor" class="btn-pixel-action primary-stock" title="Abrir formulário de cadastro de novo fornecedor">
+                <span class="btn-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+                <span>Cadastrar Fornecedor</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tabela de Fornecedores -->
+          <div class="table-responsive-container">
+            <table class="pixel-table" id="tabelaFornecedores" aria-label="Tabela de Fornecedores Parceiros">
+              <caption class="sr-only">Tabela de parceiros e fornecedores têxteis PixelKids com CNPJ, contatos e endereços</caption>
+              <thead>
+                <tr>
+                  <th scope="col" style="min-width: 240px;">Nome do Fornecedor / Razão Social</th>
+                  <th scope="col" style="width: 180px;">CNPJ</th>
+                  <th scope="col" style="min-width: 260px;">Endereço Completo</th>
+                  <th scope="col" style="min-width: 240px;">Contatos (Tel &amp; E-mail)</th>
+                  <th scope="col" style="min-width: 200px;">Anotações / Condições</th>
+                  <th scope="col" style="width: 140px;" class="col-actions">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="fornecedoresTableBody">
+                <!-- Linhas populadas dinamicamente via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+        </section>
 
       </div>
 
     </main>
+  </div>
 
+
+  <!-- =========================================================================
+       MODAL 1: CADASTRO / EDIÇÃO DE FUNCIONÁRIO
+       ========================================================================= -->
+  <div id="modalFuncionario" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalFuncionarioTitle">
+    <div class="modal-dialog">
+      
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-badge-status">
+            <span class="dot-status" style="background-color: #8b5cf6;"></span>
+            <span id="modalFuncBadgeText">Colaborador</span>
+          </div>
+          <h2 id="modalFuncionarioTitle" class="modal-title">Cadastrar Funcionário</h2>
+          <p class="modal-subtitle">Preencha os dados do colaborador para acesso e identificação na loja</p>
+        </div>
+        <button type="button" id="btnFecharModalFunc" class="modal-close-btn" aria-label="Fechar janela" title="Fechar (Esc)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="formFuncionario" class="modal-form" novalidate>
+        <input type="hidden" id="funcEditId" value="">
+
+        <div class="modal-scroll-area">
+          
+          <!-- Seção: Identificação do Colaborador -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Identificação &amp; Função</span>
+          </div>
+
+          <div class="form-grid-2">
+            <!-- Nome Completo -->
+            <div class="form-group">
+              <label for="funcNome" class="form-label">Nome Completo: <span style="color: var(--color-red);">*</span></label>
+              <input 
+                type="text" 
+                id="funcNome" 
+                name="nome_completo" 
+                class="pixel-form-input" 
+                placeholder="Ex: Carla Cristina Silveira" 
+                required
+                autocomplete="name"
+              >
+            </div>
+
+            <!-- Função / Cargo -->
+            <div class="form-group">
+              <label for="funcFuncao" class="form-label">Função / Cargo: <span style="color: var(--color-red);">*</span></label>
+              <select id="funcFuncao" name="funcao" class="pixel-form-input" required>
+                <option value="" disabled selected>Selecione a função...</option>
+                <option value="Gerente de Loja">Gerente de Loja</option>
+                <option value="Vendedora Sênior">Vendedora Sênior</option>
+                <option value="Vendedor(a)">Vendedor(a)</option>
+                <option value="Caixa / Atendimento">Caixa / Atendimento</option>
+                <option value="Estoquista / Logística">Estoquista / Logística</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Seção: Credenciais de Acesso -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>Credenciais de Acesso ao Sistema</span>
+          </div>
+
+          <div class="form-grid-2">
+            <!-- Login -->
+            <div class="form-group">
+              <label for="funcLogin" class="form-label">Login do Usuário: <span style="color: var(--color-red);">*</span></label>
+              <div class="input-with-prefix">
+                <span class="input-prefix" aria-hidden="true">@</span>
+                <input 
+                  type="text" 
+                  id="funcLogin" 
+                  name="login" 
+                  class="pixel-form-input" 
+                  placeholder="ex: carla.gerente" 
+                  required
+                  autocomplete="username"
+                >
+              </div>
+            </div>
+
+            <!-- Senha -->
+            <div class="form-group">
+              <label for="funcSenha" class="form-label">Senha de Acesso: <span style="color: var(--color-red);">*</span></label>
+              <div class="password-input-wrapper">
+                <input 
+                  type="password" 
+                  id="funcSenha" 
+                  name="senha" 
+                  class="pixel-form-input" 
+                  placeholder="Digite a senha..." 
+                  required
+                  autocomplete="new-password"
+                >
+                <button type="button" id="btnToggleSenhaFunc" class="btn-toggle-eye" title="Mostrar/ocultar senha" aria-label="Mostrar ou ocultar senha">
+                  <svg id="iconEyeOpen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg id="iconEyeClosed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Seção: Informações de Contato -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Canais de Contato</span>
+          </div>
+
+          <div class="form-grid-2">
+            <!-- Email -->
+            <div class="form-group">
+              <label for="funcEmail" class="form-label">E-mail Corporativo/Pessoal: <span style="color: var(--color-red);">*</span></label>
+              <input 
+                type="email" 
+                id="funcEmail" 
+                name="email" 
+                class="pixel-form-input" 
+                placeholder="colaborador@pixelkids.com.br" 
+                required
+                autocomplete="email"
+              >
+            </div>
+
+            <!-- Telefone -->
+            <div class="form-group">
+              <label for="funcTelefone" class="form-label">Telefone / WhatsApp: <span style="color: var(--color-red);">*</span></label>
+              <input 
+                type="tel" 
+                id="funcTelefone" 
+                name="telefone" 
+                class="pixel-form-input" 
+                placeholder="(11) 98765-4321" 
+                required
+                autocomplete="tel"
+              >
+            </div>
+          </div>
+
+          <!-- Anotação / Observações -->
+          <div class="form-group">
+            <label for="funcAnotacoes" class="form-label">Anotação / Observações Internas:</label>
+            <textarea 
+              id="funcAnotacoes" 
+              name="anotacao" 
+              class="pixel-form-textarea" 
+              rows="3" 
+              placeholder="Turnos de trabalho, responsabilidades de abertura/fechamento, metas ou observações..."
+            ></textarea>
+          </div>
+
+          <!-- Registro do Último Acesso (Informativo de Auditoria) -->
+          <div class="modal-audit-box" id="funcAuditBox">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Registro de Último Acesso: <strong id="funcAuditText">Novo cadastro (será registrado no 1º login)</strong></span>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <div class="footer-left">
+            <button type="button" id="btnExcluirFuncionarioModal" class="btn-modal-action btn-danger" style="display: none;" title="Excluir este colaborador">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Excluir</span>
+            </button>
+          </div>
+          <div class="footer-right">
+            <button type="button" id="btnCancelarFunc" class="btn-modal-action btn-secondary">Cancelar</button>
+            <button type="submit" id="btnSalvarFuncionario" class="btn-modal-action btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              <span>Salvar Colaborador</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       MODAL 2: CADASTRO / EDIÇÃO DE FORNECEDOR
+       ========================================================================= -->
+  <div id="modalFornecedor" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalFornecedorTitle">
+    <div class="modal-dialog">
+      
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-badge-status">
+            <span class="dot-status" style="background-color: var(--color-green);"></span>
+            <span id="modalFornBadgeText">Fornecedor</span>
+          </div>
+          <h2 id="modalFornecedorTitle" class="modal-title">Cadastrar Fornecedor</h2>
+          <p class="modal-subtitle">Dados cadastrais, fiscais e canais comerciais de suprimento</p>
+        </div>
+        <button type="button" id="btnFecharModalForn" class="modal-close-btn" aria-label="Fechar janela" title="Fechar (Esc)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="formFornecedor" class="modal-form" novalidate>
+        <input type="hidden" id="fornEditId" value="">
+
+        <div class="modal-scroll-area">
+          
+          <!-- Seção: Dados Empresariais -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <span>Dados da Empresa &amp; CNPJ</span>
+          </div>
+
+          <div class="form-grid-2">
+            <!-- Nome do Fornecedor / Razão Social -->
+            <div class="form-group">
+              <label for="fornNome" class="form-label">Nome do Fornecedor / Razão Social: <span style="color: var(--color-red);">*</span></label>
+              <input 
+                type="text" 
+                id="fornNome" 
+                name="nome_fornecedor" 
+                class="pixel-form-input" 
+                placeholder="Ex: Têxtil Kids Confecções Ltda" 
+                required
+              >
+            </div>
+
+            <!-- CNPJ -->
+            <div class="form-group">
+              <label for="fornCnpj" class="form-label">CNPJ: <span style="color: var(--color-red);">*</span></label>
+              <input 
+                type="text" 
+                id="fornCnpj" 
+                name="cnpj" 
+                class="pixel-form-input" 
+                placeholder="00.000.000/0000-00" 
+                maxlength="18"
+                required
+              >
+            </div>
+          </div>
+
+          <!-- Endereço Completo -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Localização &amp; Logística</span>
+          </div>
+
+          <div class="form-group">
+            <label for="fornEndereco" class="form-label">Endereço Completo: <span style="color: var(--color-red);">*</span></label>
+            <input 
+              type="text" 
+              id="fornEndereco" 
+              name="endereco" 
+              class="pixel-form-input" 
+              placeholder="Rua / Av., Número, Bairro, Cidade/UF - CEP" 
+              required
+            >
+          </div>
+
+          <!-- Seção: Contato Comercial -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Canais de Atendimento &amp; Pedidos</span>
+          </div>
+
+          <div class="form-grid-2">
+            <!-- Telefone -->
+            <div class="form-group">
+              <label for="fornTelefone" class="form-label">Telefone Comercial / WhatsApp: <span style="color: var(--color-red);">*</span></label>
+              <input 
+                type="tel" 
+                id="fornTelefone" 
+                name="telefone" 
+                class="pixel-form-input" 
+                placeholder="(11) 3224-8800" 
+                required
+              >
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="fornEmail" class="form-label">E-mail Comercial: <span style="color: var(--color-red);">*</span></label>
+              <input 
+                type="email" 
+                id="fornEmail" 
+                name="email" 
+                class="pixel-form-input" 
+                placeholder="pedidos@fornecedor.com.br" 
+                required
+              >
+            </div>
+          </div>
+
+          <!-- Anotação / Observações Comerciais -->
+          <div class="form-group">
+            <label for="fornAnotacoes" class="form-label">Anotação / Condições Comerciais:</label>
+            <textarea 
+              id="fornAnotacoes" 
+              name="anotacao" 
+              class="pixel-form-textarea" 
+              rows="3" 
+              placeholder="Linhas de produtos fornecidas, condições de pagamento (ex: 28/56 dias), prazo médio de entrega, pedido mínimo..."
+            ></textarea>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <div class="footer-left">
+            <button type="button" id="btnExcluirFornecedorModal" class="btn-modal-action btn-danger" style="display: none;" title="Excluir este fornecedor">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Excluir</span>
+            </button>
+          </div>
+          <div class="footer-right">
+            <button type="button" id="btnCancelarForn" class="btn-modal-action btn-secondary">Cancelar</button>
+            <button type="submit" id="btnSalvarFornecedor" class="btn-modal-action btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              <span>Salvar Fornecedor</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       MODAL 3: CONFIRMAÇÃO DE EXCLUSÃO
+       ========================================================================= -->
+  <div id="modalConfirmarExclusaoEquipe" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalExclusaoEquipeTitle">
+    <div class="modal-dialog modal-dialog-sm">
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-badge-status">
+            <span class="dot-status" style="background-color: var(--color-red);"></span>
+            <span>Atenção</span>
+          </div>
+          <h2 id="modalExclusaoEquipeTitle" class="modal-title">Confirmar Exclusão</h2>
+          <p class="modal-subtitle">Esta operação removerá o registro do sistema</p>
+        </div>
+        <button type="button" id="btnFecharModalExclusaoEquipe" class="modal-close-btn" aria-label="Fechar">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body-padding">
+        <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 1.25rem;">
+          Tem certeza que deseja excluir <strong id="itemExclusaoNome">este registro</strong>?
+        </p>
+        <div style="display: flex; justify-content: flex-end; gap: 8px;">
+          <button type="button" id="btnCancelarExclusaoEquipe" class="btn-modal-action btn-secondary" style="padding: 8px 16px;">Cancelar</button>
+          <button type="button" id="btnConfirmarExclusaoEquipe" class="btn-modal-action btn-danger" style="padding: 8px 18px;">Sim, Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Toast de Notificações do Módulo Equipe -->
+  <div id="equipeToast" class="estoque-toast" role="status" aria-live="polite">
+    <div class="toast-icon" id="toastEquipeIcon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    </div>
+    <div class="toast-message" id="toastEquipeMessage">Operação realizada com sucesso!</div>
   </div>
 
   <!-- Scripts Interativos -->

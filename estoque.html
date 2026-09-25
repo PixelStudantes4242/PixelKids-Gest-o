@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PixelKids - Gestão de Estoque</title>
-  <meta name="description" content="Controle de estoque, tamanhos e lotes da loja PixelKids.">
+  <meta name="description" content="Controle de estoque, tamanhos infantis, reposição e catálogo de produtos da PixelKids.">
   
-  <!-- Fontes Google -->
+  <!-- Fontes Google para tipografia lúdica e moderna da marca -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Silkscreen:wght@700&display=swap" rel="stylesheet">
   <link rel="icon" href="public/favicon.ico" type="image/x-icon">
+  
   <!-- Folha de Estilos Unificada -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -41,10 +42,10 @@
         </div>
       </div>
 
-      <!-- Canto direito: Usuário logado estático PixelKidsADM e Ação de Sair -->
+      <!-- Canto direito: Usuário logado estático / sessionStorage e Ação de Sair -->
       <div class="header-right">
         <div id="userBadge" class="user-profile-badge" title="Usuário autenticado">
-          <div class="user-avatar-wrapper">
+          <div class="user-avatar-wrapper" style="background-color: var(--color-secondary);">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
@@ -71,7 +72,7 @@
 
     <!-- 2. Menu Lateral Esquerdo (Sidebar) Fixo e Sempre Visível -->
     <aside id="mainSidebar" class="system-sidebar" aria-label="Menu Lateral do Sistema">
-      <div class="sidebar-nav">
+      <nav class="sidebar-nav" aria-label="Navegação Principal">
         <span class="sidebar-nav-title">Navegação Principal</span>
         
         <!-- Link: Início (index.html) -->
@@ -147,7 +148,7 @@
           </div>
           <span class="nav-link-text">Equipe</span>
         </a>
-      </div>
+      </nav>
 
       <div class="sidebar-footer">
         <div class="sidebar-system-info">
@@ -160,62 +161,1210 @@
     <!-- 3. Área de Conteúdo Principal -->
     <main id="mainContent" class="system-main-content">
       
-      <!-- Cabeçalho com título de rascunho centralizado -->
-      <div class="page-header-wrapper">
-        <h1 class="page-draft-title" id="pageTitle">Gestão de Estoque</h1>
-        <p class="page-draft-subtitle">Controle de grades, numerações infantis, entradas e saídas</p>
+      <!-- Cabeçalho da Página com Título e Subtítulo -->
+      <div class="estoque-header-section">
+        <div class="estoque-title-group">
+          <h1 class="estoque-main-title">Gestão de Estoque</h1>
+          <p class="estoque-subtitle">
+            Monitoramento de movimentação de grades e lotes de reposição
+          </p>
+        </div>
       </div>
 
-      <!-- Cartão de Rascunho com Placeholder Centralizado -->
-      <div class="draft-card theme-estoque" id="draftCard">
-        <div class="draft-icon-bubble" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path>
-            <path d="M12 22V12"></path>
-            <polyline points="3.29 7 12 12 20.71 7"></polyline>
-            <path d="m7.5 4.27 9 5.15"></path>
-          </svg>
+      <!-- 2. Dashboard de Controle Rápido (Cards Estatísticos) -->
+      <section class="estoque-dashboard-grid" aria-label="Painel de Controle Rápido">
+        
+        <!-- Card 1: Crítico / Alerta - Estoque Baixo -->
+        <article class="stat-card stat-critical" data-dashboard-filter="critico" role="button" tabindex="0" title="Clique para filtrar: Estoque Baixo">
+          <div class="stat-card-header">
+            <div class="stat-icon-wrapper stat-icon-red">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <span class="stat-status-pill pill-critical">Alerta Crítico</span>
+          </div>
+          <div class="stat-card-body">
+            <span class="stat-label">Estoque Baixo</span>
+            <div class="stat-number-wrapper">
+              <span class="stat-number">4</span>
+              <span class="stat-unit">itens</span>
+            </div>
+            <p class="stat-help-text">Produtos com saldo inferior ao estoque mínimo estipulado</p>
+          </div>
+        </article>
+
+        <!-- Card 2: Atenção - Baixa Rotatividade -->
+        <article class="stat-card stat-warning" data-dashboard-filter="warning" role="button" tabindex="0" title="Clique para filtrar: Baixa Rotatividade">
+          <div class="stat-card-header">
+            <div class="stat-icon-wrapper stat-icon-orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <span class="stat-status-pill pill-warning">Atenção</span>
+          </div>
+          <div class="stat-card-body">
+            <span class="stat-label">Baixa Rotatividade</span>
+            <div class="stat-number-wrapper">
+              <span class="stat-number">12</span>
+              <span class="stat-unit">itens</span>
+            </div>
+            <p class="stat-help-text">Peças sem saída registrada nos últimos 30 dias</p>
+          </div>
+        </article>
+
+        <!-- Card 3: Valor Total em Mercadorias -->
+        <article class="stat-card stat-success" data-dashboard-filter="valor" role="button" tabindex="0" title="Clique para visualizar o catálogo completo de mercadorias">
+          <div class="stat-card-header">
+            <div class="stat-icon-wrapper stat-icon-green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <span class="stat-status-pill pill-success">Patrimônio</span>
+          </div>
+          <div class="stat-card-body">
+            <span class="stat-label">Valor Total em Mercadorias</span>
+            <div class="stat-number-wrapper">
+              <span class="stat-number">R$ 45.890,00</span>
+            </div>
+            <p class="stat-help-text">Cálculo de avaliação baseado no preço de venda em catálogo</p>
+          </div>
+        </article>
+
+        <!-- Card 4: Total de Itens Cadastrados -->
+        <article class="stat-card stat-info" data-dashboard-filter="todos" role="button" tabindex="0" title="Clique para exibir todos os produtos cadastrados">
+          <div class="stat-card-header">
+            <div class="stat-icon-wrapper stat-icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <span class="stat-status-pill pill-info">Catálogo Total</span>
+          </div>
+          <div class="stat-card-body">
+            <span class="stat-label">Total de Itens Cadastrados</span>
+            <div class="stat-number-wrapper">
+              <span class="stat-number">184</span>
+              <span class="stat-unit">produtos</span>
+            </div>
+            <p class="stat-help-text">Total de SKUs ativos em moda bebê, infantil e juvenil</p>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- 3. Lista de Produtos e Ações -->
+      <section class="estoque-table-section">
+        
+        <!-- Barra de Busca Rápida, Filtros Visuais e Ação de Cadastro -->
+        <div class="estoque-toolbar">
+          <div class="toolbar-left-group">
+            <div class="search-input-group">
+              <span class="search-icon-wrapper" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </span>
+              <input 
+                type="text" 
+                id="inputBuscaEstoque" 
+                class="estoque-search-input" 
+                placeholder="Buscar por código, produto ou categoria..." 
+                autocomplete="off"
+                aria-label="Buscar produtos no estoque"
+              >
+              <button type="button" id="btnClearSearch" class="btn-clear-search" title="Limpar busca" style="display: none;">
+                &times;
+              </button>
+            </div>
+
+            <!-- Botão de Filtragem e Ordenação -->
+            <div class="filter-dropdown-wrapper">
+              <button type="button" id="btnFiltrarOrdenar" class="btn-filter-sort" aria-expanded="false" aria-haspopup="true" title="Ordenar produtos na tabela">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <span class="btn-filter-label">Ordenar</span>
+                <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+
+              <!-- Menu Suspenso de Ordenação -->
+              <div class="filter-dropdown-menu" id="filterDropdownMenu" role="menu">
+                <div class="filter-dropdown-header">
+                  <span>Opções de Ordenação</span>
+                  <button type="button" id="btnResetSort" class="filter-reset-link" title="Restaurar a ordem original">Restaurar Padrão</button>
+                </div>
+                <div class="filter-dropdown-options">
+                  <button type="button" class="filter-option-btn active" data-sort="padrao">
+                    <span class="option-check">✓</span>
+                    <span class="option-text">Ordem Natural (Padrão)</span>
+                  </button>
+                  <button type="button" class="filter-option-btn" data-sort="nome-asc">
+                    <span class="option-check">✓</span>
+                    <span class="option-text">Nome: A &rarr; Z</span>
+                  </button>
+                  <button type="button" class="filter-option-btn" data-sort="nome-desc">
+                    <span class="option-check">✓</span>
+                    <span class="option-text">Nome: Z &rarr; A</span>
+                  </button>
+                  <button type="button" class="filter-option-btn" data-sort="estoque-asc">
+                    <span class="option-check">✓</span>
+                    <span class="option-text">Menor Estoque (Críticos 1º)</span>
+                  </button>
+                  <button type="button" class="filter-option-btn" data-sort="estoque-desc">
+                    <span class="option-check">✓</span>
+                    <span class="option-text">Maior Estoque</span>
+                  </button>
+                  <button type="button" class="filter-option-btn" data-sort="preco-desc">
+                    <span class="option-check">✓</span>
+                    <span class="option-text">Maior Preço (R$)</span>
+                  </button>
+                  <button type="button" class="filter-option-btn" data-sort="preco-asc">
+                    <span class="option-check">✓</span>
+                    <span class="option-text">Menor Preço (R$)</span>
+                  </button>
+                  <button type="button" class="filter-option-btn" data-sort="categoria-asc">
+                    <span class="option-check">✓</span>
+                    <span class="option-text">Categoria: A &rarr; Z</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="toolbar-right-group">
+            <!-- Indicador de Filtro Ativo do Dashboard -->
+            <div class="active-filter-chip" id="activeDashboardFilterChip" style="display: none;">
+              <span class="filter-chip-dot"></span>
+              <span class="filter-chip-label">Filtro: <strong id="activeDashboardFilterText">Estoque Baixo</strong></span>
+              <button type="button" id="btnClearDashboardFilter" class="btn-clear-filter-chip" title="Remover filtro e ver todos os produtos">&times;</button>
+            </div>
+
+            <div class="toolbar-stats-info">
+              <span>Exibindo: <strong id="produtosContador">5</strong> de 184 produtos</span>
+            </div>
+
+            <!-- Botão de Sincronização com o Google Planilhas -->
+            <div class="sheets-btn-cluster">
+              <button type="button" id="btnSyncGoogleSheets" class="btn-sync-sheets" title="Sincronizar com a Planilha Google via Apps Script">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                </svg>
+                <span id="syncSheetsText">Sincronizar Planilha</span>
+              </button>
+              <button type="button" id="btnConfigSheets" class="btn-sheets-settings" title="Configurar URL e diagnosticar conexão com Apps Script">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Botão de Cadastro posicionado logo após os cards do Dashboard -->
+            <button type="button" id="btnCadastrarProduto" class="btn-pixel-action primary-stock" title="Abrir formulário de cadastro de novo produto">
+              <span class="btn-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+              <span>Cadastrar Novo Produto</span>
+            </button>
+          </div>
         </div>
 
-        <h2>Módulo de Gestão de Estoque</h2>
-        <p>
-          Espaço reservado para o cadastro de peças (bebê, infantil e juvenil), grade de tamanhos, controle de peças por lote, aviso de estoque mínimo e relatórios de reposição.
-        </p>
+        <!-- Tabela de Produtos Limpa, Moderna e Responsiva -->
+        <div class="table-responsive-container">
+          <table class="pixel-table estoque-table" id="tabelaEstoque">
+            <caption class="sr-only">Tabela de controle de estoque de produtos infantis da PixelKids com tamanhos, preços e fornecedores</caption>
+            <thead>
+              <tr>
+                <th scope="col" style="width: 140px;">Código</th>
+                <th scope="col">Nome do Produto</th>
+                <th scope="col" style="width: 160px;">Categoria</th>
+                <th scope="col" style="width: 150px;" class="col-price">Preço Venda (R$)</th>
+                <th scope="col" style="width: 170px;" class="col-stock">Qtd. Estoque</th>
+                <th scope="col" style="width: 160px;" class="col-actions">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="estoqueTableBody">
+              
+              <!-- Produto 1: Vestido Floral Primavera Girassol (Crítico: 3 un) -->
+              <tr 
+                class="produto-row row-critical" 
+                data-codigo="#PK-0101" 
+                data-nome="Vestido Floral Primavera Girassol" 
+                data-categoria="Vestidos" 
+                data-tamanhos="1,2,3,4,6" 
+                data-tamanhos-qtd='{"1":1,"2":1,"3":1,"4":0,"6":0}' 
+                data-preco="89.90" 
+                data-qtd="3" 
+                data-minimo="10" 
+                data-forn1-nome="Têxtil Kids Confecções" 
+                data-forn1-custo="38.50" 
+                data-forn2-nome="Malhas Encanto Infantil" 
+                data-forn2-custo="42.00" 
+                data-forn3-nome="" 
+                data-forn3-custo="" 
+                data-obs="Vestido em tricoline 100% algodão com forro suave e amarração nas costas. Lote de reposição aguardando aprovação."
+                data-auditoria-user="Mariana Costa"
+                data-auditoria-data="22/09/2026 às 14:15"
+              >
+                <td class="cell-code">
+                  <span class="code-badge">#PK-0101</span>
+                </td>
+                <td class="cell-name">
+                  <div class="product-title-group">
+                    <span class="product-primary-name">Vestido Floral Primavera Girassol</span>
+                    <span class="product-secondary-meta">Tricoline 100% algodão &bull; Forro anti-alérgico</span>
+                    <div class="product-sizes-breakdown" title="Distribuição de estoque por tamanho">
+                      <span class="size-chip-stock chip-has-stock">1: <strong>1 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">2: <strong>1 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">3: <strong>1 un</strong></span>
+                      <span class="size-chip-stock chip-zero">4: 0</span>
+                      <span class="size-chip-stock chip-zero">6: 0</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-category">
+                  <span class="category-pill cat-vestidos">Vestidos</span>
+                </td>
+                <td class="cell-price col-price">
+                  <strong>R$ 89,90</strong>
+                </td>
+                <td class="cell-stock col-stock">
+                  <div class="stock-status-cell">
+                    <span class="stock-quantity text-danger">3 un.</span>
+                    <span class="stock-indicator-badge badge-danger" title="Estoque abaixo do mínimo de 10 un.">Estoque Baixo</span>
+                  </div>
+                </td>
+                <td class="cell-actions col-actions">
+                  <button type="button" class="btn-action-detail" title="Detalhar e Editar este produto">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <path d="M12 20h9"></path>
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    <span>Detalhar / Editar</span>
+                  </button>
+                </td>
+              </tr>
 
-        <!-- Grade ilustrativa de wireframe -->
-        <div class="draft-wireframe-grid">
-          <div class="wireframe-box">
-            <div class="wireframe-box-header">
-              <span class="wireframe-box-title">Itens em Estoque</span>
-              <span class="wireframe-pill">Rascunho</span>
-            </div>
-            <div class="wireframe-placeholder-line"></div>
-            <div class="wireframe-placeholder-line short"></div>
-          </div>
+              <!-- Produto 2: Conjunto Moletom Infantil Dino Aventura (Normal: 24 un) -->
+              <tr 
+                class="produto-row" 
+                data-codigo="#PK-0102" 
+                data-nome="Conjunto Moletom Infantil Dino Aventura" 
+                data-categoria="Conjuntos" 
+                data-tamanhos="4,6,8,10,12" 
+                data-tamanhos-qtd='{"4":6,"6":8,"8":5,"10":3,"12":2}' 
+                data-preco="119.90" 
+                data-qtd="24" 
+                data-minimo="8" 
+                data-forn1-nome="Malharia Sul Brasil" 
+                data-forn1-custo="52.00" 
+                data-forn2-nome="Fábrica Pequenos Passos" 
+                data-forn2-custo="55.30" 
+                data-forn3-nome="" 
+                data-forn3-custo="" 
+                data-obs="Moletom felpado quentinho com estampa interativa que brilha no escuro. Ótima aceitação no outono/inverno."
+                data-auditoria-user="PixelKidsADM"
+                data-auditoria-data="20/09/2026 às 11:20"
+              >
+                <td class="cell-code">
+                  <span class="code-badge">#PK-0102</span>
+                </td>
+                <td class="cell-name">
+                  <div class="product-title-group">
+                    <span class="product-primary-name">Conjunto Moletom Infantil Dino Aventura</span>
+                    <span class="product-secondary-meta">Moletom com toque peluciado &bull; Estampa interativa</span>
+                    <div class="product-sizes-breakdown" title="Distribuição de estoque por tamanho">
+                      <span class="size-chip-stock chip-has-stock">Tam 4: <strong>6 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">Tam 6: <strong>8 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">Tam 8: <strong>5 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">Tam 10: <strong>3 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">Tam 12: <strong>2 un</strong></span>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-category">
+                  <span class="category-pill cat-conjuntos">Conjuntos</span>
+                </td>
+                <td class="cell-price col-price">
+                  <strong>R$ 119,90</strong>
+                </td>
+                <td class="cell-stock col-stock">
+                  <div class="stock-status-cell">
+                    <span class="stock-quantity text-success">24 un.</span>
+                    <span class="stock-indicator-badge badge-success">Em Estoque</span>
+                  </div>
+                </td>
+                <td class="cell-actions col-actions">
+                  <button type="button" class="btn-action-detail" title="Detalhar e Editar este produto">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <path d="M12 20h9"></path>
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    <span>Detalhar / Editar</span>
+                  </button>
+                </td>
+              </tr>
 
-          <div class="wireframe-box">
-            <div class="wireframe-box-header">
-              <span class="wireframe-box-title">Alerta de Estoque Baixo</span>
-              <span class="wireframe-pill">Rascunho</span>
-            </div>
-            <div class="wireframe-placeholder-line"></div>
-            <div class="wireframe-placeholder-line short"></div>
-          </div>
+              <!-- Produto 3: Camiseta Algodão Orgânico Pixel Game (Normal: 38 un) -->
+              <tr 
+                class="produto-row" 
+                data-codigo="#PK-0103" 
+                data-nome="Camiseta Algodão Orgânico Pixel Game" 
+                data-categoria="Camisetas" 
+                data-tamanhos="2,3,4,6,8,10,12" 
+                data-tamanhos-qtd='{"2":4,"3":5,"4":8,"6":7,"8":6,"10":5,"12":3}' 
+                data-preco="49.90" 
+                data-qtd="38" 
+                data-minimo="15" 
+                data-forn1-nome="Estamparia Pixel Arte" 
+                data-forn1-custo="18.90" 
+                data-forn2-nome="Algodão Puro Têxtil" 
+                data-forn2-custo="20.00" 
+                data-forn3-nome="EcoMalhas Br" 
+                data-forn3-custo="21.50" 
+                data-obs="Peça coringa unissex. 100% algodão penteado fio 30.1 sustentável com acabamento reforçado ombro a ombro."
+                data-auditoria-user="Lucas Ferreira"
+                data-auditoria-data="19/09/2026 às 16:45"
+              >
+                <td class="cell-code">
+                  <span class="code-badge">#PK-0103</span>
+                </td>
+                <td class="cell-name">
+                  <div class="product-title-group">
+                    <span class="product-primary-name">Camiseta Algodão Orgânico Pixel Game</span>
+                    <span class="product-secondary-meta">Algodão 30.1 sustentável &bull; Reforço ombro a ombro</span>
+                    <div class="product-sizes-breakdown" title="Distribuição de estoque por tamanho">
+                      <span class="size-chip-stock chip-has-stock">2a: <strong>4 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">3a: <strong>5 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">4: <strong>8 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">6: <strong>7 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">8: <strong>6 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">10: <strong>5 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">12: <strong>3 un</strong></span>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-category">
+                  <span class="category-pill cat-camisetas">Camisetas</span>
+                </td>
+                <td class="cell-price col-price">
+                  <strong>R$ 49,90</strong>
+                </td>
+                <td class="cell-stock col-stock">
+                  <div class="stock-status-cell">
+                    <span class="stock-quantity text-success">38 un.</span>
+                    <span class="stock-indicator-badge badge-success">Em Estoque</span>
+                  </div>
+                </td>
+                <td class="cell-actions col-actions">
+                  <button type="button" class="btn-action-detail" title="Detalhar e Editar este produto">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <path d="M12 20h9"></path>
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    <span>Detalhar / Editar</span>
+                  </button>
+                </td>
+              </tr>
 
-          <div class="wireframe-box">
-            <div class="wireframe-box-header">
-              <span class="wireframe-box-title">Entradas de Lote (Atacado)</span>
-              <span class="wireframe-pill">Rascunho</span>
-            </div>
-            <div class="wireframe-placeholder-line"></div>
-            <div class="wireframe-placeholder-line short"></div>
-          </div>
+              <!-- Produto 4: Tênis Infantil Cano Alto Rainbow Star (Atenção / Giro Lento: 5 un) -->
+              <tr 
+                class="produto-row row-warning" 
+                data-codigo="#PK-0104" 
+                data-nome="Tênis Infantil Cano Alto Rainbow Star" 
+                data-categoria="Calçados" 
+                data-tamanhos="1,2,3,4,16" 
+                data-tamanhos-qtd='{"1":1,"2":1,"3":1,"4":1,"16":1}' 
+                data-preco="139.90" 
+                data-qtd="5" 
+                data-minimo="6" 
+                data-forn1-nome="Calçados Passo Seguro" 
+                data-forn1-custo="68.00" 
+                data-forn2-nome="Distribuidora Kids Shoes" 
+                data-forn2-custo="72.00" 
+                data-forn3-nome="" 
+                data-forn3-custo="" 
+                data-obs="Solado antiderrapante emborrachado com fecho duplo de velcro. Sugerida campanha promocional para giro de estoque."
+                data-auditoria-user="Mariana Costa"
+                data-auditoria-data="15/09/2026 às 09:30"
+              >
+                <td class="cell-code">
+                  <span class="code-badge">#PK-0104</span>
+                </td>
+                <td class="cell-name">
+                  <div class="product-title-group">
+                    <span class="product-primary-name">Tênis Infantil Cano Alto Rainbow Star</span>
+                    <span class="product-secondary-meta">Palmilha anatômica &bull; Solado emborrachado</span>
+                    <div class="product-sizes-breakdown" title="Distribuição de estoque por tamanho">
+                      <span class="size-chip-stock chip-has-stock">1a: <strong>1 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">2a: <strong>1 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">3a: <strong>1 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">4: <strong>1 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">16: <strong>1 un</strong></span>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-category">
+                  <span class="category-pill cat-calcados">Calçados</span>
+                </td>
+                <td class="cell-price col-price">
+                  <strong>R$ 139,90</strong>
+                </td>
+                <td class="cell-stock col-stock">
+                  <div class="stock-status-cell">
+                    <span class="stock-quantity text-warning">5 un.</span>
+                    <span class="stock-indicator-badge badge-warning" title="Item com baixa rotatividade">Giro Lento</span>
+                  </div>
+                </td>
+                <td class="cell-actions col-actions">
+                  <button type="button" class="btn-action-detail" title="Detalhar e Editar este produto">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <path d="M12 20h9"></path>
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    <span>Detalhar / Editar</span>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Produto 5: Kit Laços e Tiaras Candy Color 6un (Normal: 42 un) -->
+              <tr 
+                class="produto-row" 
+                data-codigo="#PK-0105" 
+                data-nome="Kit Laços e Tiaras Candy Color 6un" 
+                data-categoria="Acessórios" 
+                data-tamanhos="RN,P,M,G,GG" 
+                data-tamanhos-qtd='{"RN":6,"P":10,"M":12,"G":8,"GG":6}' 
+                data-preco="34.90" 
+                data-qtd="42" 
+                data-minimo="12" 
+                data-forn1-nome="Ateliê Mimos & Fitas" 
+                data-forn1-custo="11.00" 
+                data-forn2-nome="Encanto Laços Distribuidora" 
+                data-forn2-custo="12.50" 
+                data-forn3-nome="" 
+                data-forn3-custo="" 
+                data-obs="Em fita de gorgurão de alta maciez que não aperta a cabeça dos bebês. Alto volume de saída conjunta com vestidos."
+                data-auditoria-user="PixelKidsADM"
+                data-auditoria-data="24/09/2026 às 10:05"
+              >
+                <td class="cell-code">
+                  <span class="code-badge">#PK-0105</span>
+                </td>
+                <td class="cell-name">
+                  <div class="product-title-group">
+                    <span class="product-primary-name">Kit Laços e Tiaras Candy Color 6un</span>
+                    <span class="product-secondary-meta">Gorgurão macio anti-pressão &bull; Cores pastéis</span>
+                    <div class="product-sizes-breakdown" title="Distribuição de estoque por tamanho">
+                      <span class="size-chip-stock chip-has-stock">RN: <strong>6 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">P: <strong>10 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">M: <strong>12 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">G: <strong>8 un</strong></span>
+                      <span class="size-chip-stock chip-has-stock">GG: <strong>6 un</strong></span>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-category">
+                  <span class="category-pill cat-acessorios">Acessórios</span>
+                </td>
+                <td class="cell-price col-price">
+                  <strong>R$ 34,90</strong>
+                </td>
+                <td class="cell-stock col-stock">
+                  <div class="stock-status-cell">
+                    <span class="stock-quantity text-success">42 un.</span>
+                    <span class="stock-indicator-badge badge-success">Em Estoque</span>
+                  </div>
+                </td>
+                <td class="cell-actions col-actions">
+                  <button type="button" class="btn-action-detail" title="Detalhar e Editar este produto">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <path d="M12 20h9"></path>
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    <span>Detalhar / Editar</span>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Linha de Estado Vazio para busca sem resultados -->
+              <tr id="emptySearchRow" class="empty-search-row" style="display: none;">
+                <td colspan="6">
+                  <div class="empty-search-box">
+                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      <line x1="8" y1="11" x2="14" y2="11"></line>
+                    </svg>
+                    <h3>Nenhum produto encontrado</h3>
+                    <p>Tente buscar por outro código de produto, categoria ou termo infantil.</p>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
 
-      </div>
+      </section>
 
     </main>
 
+  </div>
+
+  <!-- ========================================================================
+       4. JANELA POP-UP / MODAL (Cadastrar e Detalhar/Editar)
+       Estrutura com overlay escurecido, transição suave e campos completos
+       ======================================================================== -->
+  <div id="modalProduto" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <div class="modal-dialog">
+      
+      <!-- Cabeçalho do Modal -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-badge-status" id="modalBadgeStatus">
+            <span class="dot-status"></span>
+            <span id="modalStatusText">Ficha Técnica</span>
+          </div>
+          <h2 id="modalTitulo" class="modal-title">Cadastrar Novo Produto</h2>
+          <p id="modalSubtitulo" class="modal-subtitle">Insira os dados técnicos, categoria, grade infantil e fornecedores</p>
+        </div>
+        <button type="button" id="btnFecharModal" class="modal-close-btn" aria-label="Fechar janela" title="Fechar (Esc)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Formulário do Modal -->
+      <form id="formProduto" class="modal-form" onsubmit="return false;">
+        <div class="modal-scroll-area">
+          
+          <!-- Seção 1: Identificação Básica do Produto -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+            <span>1. Identificação Básica</span>
+          </div>
+
+          <div class="form-grid-2">
+            <!-- Código do Produto -->
+            <div class="form-group">
+              <label for="inputProdutoCodigo" class="form-label">
+                Código do Produto <span class="required-mark">*</span>
+              </label>
+              <div class="input-with-prefix">
+                <span class="input-prefix">ID</span>
+                <input 
+                  type="text" 
+                  id="inputProdutoCodigo" 
+                  name="codigo" 
+                  class="pixel-form-input" 
+                  placeholder="Ex: #PK-0106"
+                  required
+                >
+              </div>
+            </div>
+
+            <!-- Categoria / Tipo -->
+            <div class="form-group">
+              <label for="selectProdutoCategoria" class="form-label">
+                Categoria / Tipo <span class="required-mark">*</span>
+              </label>
+              <select id="selectProdutoCategoria" name="categoria" class="pixel-form-input pixel-select" required>
+                <option value="" disabled selected>Selecione a categoria...</option>
+                <option value="Vestidos">Vestidos</option>
+                <option value="Conjuntos">Conjuntos</option>
+                <option value="Camisetas">Camisetas</option>
+                <option value="Calçados">Calçados</option>
+                <option value="Acessórios">Acessórios</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Nome Completo do Produto -->
+          <div class="form-group">
+            <label for="inputProdutoNome" class="form-label">
+              Nome do Produto <span class="required-mark">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="inputProdutoNome" 
+              name="nome" 
+              class="pixel-form-input" 
+              placeholder="Ex: Jardineira Jeans Infantil com Camiseta Poá"
+              required
+            >
+          </div>
+
+          <!-- Seção 2: Grade de Tamanhos Completa com Quantidades por Tamanho -->
+          <div class="form-section-title-wrap">
+            <div class="form-section-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+              <span>2. Grade de Tamanhos e Quantidades por Tamanho</span>
+            </div>
+            <div class="grade-quick-actions">
+              <button type="button" id="btnZerarGrade" class="btn-grade-quick" title="Zerar todas as quantidades da grade">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                <span>Zerar Quantidades</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="section-instruction-note">
+            Defina a quantidade de peças disponíveis para cada tamanho. A soma total da grade atualizará automaticamente a quantidade geral em estoque.
+          </p>
+
+          <div class="sizes-box-wrapper">
+            
+            <!-- Grupo A: Bebê / Primeiros Passos -->
+            <div class="size-group-block">
+              <div class="size-group-header">
+                <span class="size-group-label">Bebê / Primeiros Passos:</span>
+                <span class="size-group-hint">(0 a 12 meses)</span>
+              </div>
+              <div class="size-cards-grid">
+                <!-- RN -->
+                <div class="size-stock-card" data-size="RN">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho RN">RN</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="RN" name="qtd_RN" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho RN">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- P -->
+                <div class="size-stock-card" data-size="P">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho P">P</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="P" name="qtd_P" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho P">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- M -->
+                <div class="size-stock-card" data-size="M">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho M">M</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="M" name="qtd_M" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho M">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- G -->
+                <div class="size-stock-card" data-size="G">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho G">G</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="G" name="qtd_G" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho G">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- GG -->
+                <div class="size-stock-card" data-size="GG">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho GG">GG</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="GG" name="qtd_GG" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho GG">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grupo B: Primeiros Anos -->
+            <div class="size-group-block">
+              <div class="size-group-header">
+                <span class="size-group-label">Primeiros Anos:</span>
+                <span class="size-group-hint">(1 a 3 anos)</span>
+              </div>
+              <div class="size-cards-grid">
+                <!-- 1 -->
+                <div class="size-stock-card" data-size="1">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="1 ano">1 ano</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="1" name="qtd_1" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 1 ano">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="size-stock-card" data-size="2">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="2 anos">2 anos</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="2" name="qtd_2" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 2 anos">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="size-stock-card" data-size="3">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="3 anos">3 anos</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="3" name="qtd_3" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 3 anos">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grupo C: Infantil / Juvenil -->
+            <div class="size-group-block">
+              <div class="size-group-header">
+                <span class="size-group-label">Infantil / Juvenil:</span>
+                <span class="size-group-hint">(4 a 16 anos)</span>
+              </div>
+              <div class="size-cards-grid">
+                <!-- 4 -->
+                <div class="size-stock-card" data-size="4">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho 4">Tam 4</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="4" name="qtd_4" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 4">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="size-stock-card" data-size="6">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho 6">Tam 6</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="6" name="qtd_6" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 6">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- 8 -->
+                <div class="size-stock-card" data-size="8">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho 8">Tam 8</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="8" name="qtd_8" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 8">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- 10 -->
+                <div class="size-stock-card" data-size="10">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho 10">Tam 10</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="10" name="qtd_10" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 10">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- 12 -->
+                <div class="size-stock-card" data-size="12">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho 12">Tam 12</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="12" name="qtd_12" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 12">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- 14 -->
+                <div class="size-stock-card" data-size="14">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho 14">Tam 14</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="14" name="qtd_14" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 14">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+
+                <!-- 16 -->
+                <div class="size-stock-card" data-size="16">
+                  <div class="size-card-header">
+                    <span class="size-card-label" title="Tamanho 16">Tam 16</span>
+                    <span class="size-card-qty-display">0 un</span>
+                  </div>
+                  <div class="size-stepper-control">
+                    <button type="button" class="btn-stepper btn-minus" data-action="decrease" title="Diminuir quantidade">&minus;</button>
+                    <input type="number" class="size-qty-input" data-size="16" name="qtd_16" min="0" max="9999" value="0" placeholder="0" aria-label="Quantidade tamanho 16">
+                    <button type="button" class="btn-stepper btn-plus" data-action="increase" title="Aumentar quantidade">&plus;</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Faixa Resumo Automático da Grade -->
+            <div class="grade-summary-strip" id="gradeSummaryStrip">
+              <div class="grade-summary-info">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                </svg>
+                <span>Total Calculado na Grade: <strong id="gradeTotalUnits">0</strong> un. (<span id="gradeActiveSizesCount">0</span> tamanhos com estoque)</span>
+              </div>
+              <span class="grade-sync-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Sincronizado com Estoque Geral
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Seção 3: Valores Comerciais e Estoque -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            <span>3. Valores Comerciais e Saldos</span>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label for="inputProdutoPreco" class="form-label">
+                Preço de Venda (R$) <span class="required-mark">*</span>
+              </label>
+              <div class="input-with-prefix">
+                <span class="input-prefix">R$</span>
+                <input 
+                  type="number" 
+                  step="0.01" 
+                  id="inputProdutoPreco" 
+                  name="preco" 
+                  class="pixel-form-input" 
+                  placeholder="0,00"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputProdutoQtd" class="form-label">
+                Quantidade Total em Estoque <span class="required-mark">*</span>
+              </label>
+              <input 
+                type="number" 
+                id="inputProdutoQtd" 
+                name="quantidade" 
+                class="pixel-form-input" 
+                placeholder="0"
+                min="0"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="inputProdutoMinimo" class="form-label">
+                Estoque Mínimo para Alerta <span class="required-mark">*</span>
+              </label>
+              <input 
+                type="number" 
+                id="inputProdutoMinimo" 
+                name="estoqueMinimo" 
+                class="pixel-form-input" 
+                placeholder="Ex: 5"
+                min="0"
+                required
+              >
+            </div>
+          </div>
+
+          <!-- Seção 4: Fornecedores e Custos (Até 3 parceiros) -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>4. Fornecedores e Preço de Custo (Até 3 parceiros)</span>
+          </div>
+
+          <div class="suppliers-container">
+            <!-- Fornecedor 1 -->
+            <div class="supplier-row">
+              <div class="supplier-index">1º</div>
+              <div class="form-group flex-2">
+                <label for="forn1Nome" class="form-sublabel">Nome do Fornecedor Principal</label>
+                <input type="text" id="forn1Nome" class="pixel-form-input sm" placeholder="Ex: Têxtil Kids Confecções">
+              </div>
+              <div class="form-group flex-1">
+                <label for="forn1Custo" class="form-sublabel">Preço de Custo (R$)</label>
+                <div class="input-with-prefix sm">
+                  <span class="input-prefix">R$</span>
+                  <input type="number" step="0.01" id="forn1Custo" class="pixel-form-input sm" placeholder="0,00">
+                </div>
+              </div>
+            </div>
+
+            <!-- Fornecedor 2 -->
+            <div class="supplier-row">
+              <div class="supplier-index">2º</div>
+              <div class="form-group flex-2">
+                <label for="forn2Nome" class="form-sublabel">Nome do Fornecedor Secundário</label>
+                <input type="text" id="forn2Nome" class="pixel-form-input sm" placeholder="Ex: Malhas Encanto Infantil">
+              </div>
+              <div class="form-group flex-1">
+                <label for="forn2Custo" class="form-sublabel">Preço de Custo (R$)</label>
+                <div class="input-with-prefix sm">
+                  <span class="input-prefix">R$</span>
+                  <input type="number" step="0.01" id="forn2Custo" class="pixel-form-input sm" placeholder="0,00">
+                </div>
+              </div>
+            </div>
+
+            <!-- Fornecedor 3 -->
+            <div class="supplier-row">
+              <div class="supplier-index">3º</div>
+              <div class="form-group flex-2">
+                <label for="forn3Nome" class="form-sublabel">Nome do Fornecedor Adicional</label>
+                <input type="text" id="forn3Nome" class="pixel-form-input sm" placeholder="Ex: Distribuidora Moda Sul">
+              </div>
+              <div class="form-group flex-1">
+                <label for="forn3Custo" class="form-sublabel">Preço de Custo (R$)</label>
+                <div class="input-with-prefix sm">
+                  <span class="input-prefix">R$</span>
+                  <input type="number" step="0.01" id="forn3Custo" class="pixel-form-input sm" placeholder="0,00">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Seção 5: Anotações / Observações Internas -->
+          <div class="form-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>5. Anotações e Observações Técnicas</span>
+          </div>
+
+          <div class="form-group">
+            <label for="textareaProdutoObs" class="sr-only">Anotações e Observações Técnicas</label>
+            <textarea 
+              id="textareaProdutoObs" 
+              name="observacoes" 
+              rows="3" 
+              class="pixel-form-textarea" 
+              placeholder="Descreva detalhes do tecido, cuidados de lavagem, lote de confecção ou orientações de reposição..."
+              aria-label="Anotações e observações técnicas do produto"
+            ></textarea>
+          </div>
+
+          <!-- Seção 6: Auditoria Visual (Somente-leitura) -->
+          <div class="audit-visual-box" id="auditVisualBox">
+            <div class="audit-icon-wrapper">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+            <div class="audit-content">
+              <span class="audit-title">Registro de Auditoria do Sistema</span>
+              <p class="audit-text" id="auditTextDisplay">
+                Última alteração por: <strong id="auditUser">PixelKidsADM</strong> em <span id="auditDate">24/09/2026 às 15:59</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Rodapé de Ações do Modal -->
+        <div class="modal-footer">
+          <div class="footer-left">
+            <button type="button" id="btnExcluirProduto" class="btn-modal-action btn-danger" title="Simular exclusão visual deste produto">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Excluir</span>
+            </button>
+          </div>
+          <div class="footer-right">
+            <button type="button" id="btnCancelarModal" class="btn-modal-action btn-secondary" title="Fechar sem salvar alterações">
+              <span>Cancelar</span>
+            </button>
+            <button type="submit" id="btnSalvarProduto" class="btn-modal-action btn-primary" title="Salvar dados do produto">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              <span>Salvar Produto</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Modal de Configuração do Google Sheets / Apps Script -->
+  <div id="modalSheetsConfig" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalSheetsTitle">
+    <div class="modal-dialog modal-dialog-sm modal-dialog-sheets">
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-badge-status">
+            <span class="dot-status" id="sheetsDotStatus" style="background-color: var(--color-green);"></span>
+            <span id="sheetsStatusBadgeText">Integração Google Planilhas</span>
+          </div>
+          <h2 id="modalSheetsTitle" class="modal-title">Conectar Google Apps Script</h2>
+          <p class="modal-subtitle">Persistência direta na aba "Estoque" (B2:AD2)</p>
+        </div>
+        <button type="button" id="btnFecharModalSheets" class="modal-close-btn" aria-label="Fechar janela" title="Fechar (Esc)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body-padding">
+        <div class="sheets-info-card">
+          <div><strong>Planilha Conectada:</strong> <code>1aEGav19ByoJamz_REZD7S1hwX7ndRXN-i5NY4eNqE7A</code></div>
+          <div><strong>Aba de Trabalho:</strong> <code>Estoque</code> (Inicia na célula B2 com dados a partir de B3)</div>
+          <div><strong>Arquivo Apps Script:</strong> Código <code>Code.gs</code> com funções <code>autorizarETestarScript</code>, <code>doGet</code> e <code>doPost</code>.</div>
+        </div>
+
+        <div class="form-group" style="margin-top: 1.15rem;">
+          <label for="inputGasUrl" class="form-label">URL do Web App implantado (Google Apps Script):</label>
+          <div class="input-with-action-group">
+            <input 
+              type="url" 
+              id="inputGasUrl" 
+              class="pixel-form-input" 
+              placeholder="https://script.google.com/macros/s/.../exec"
+              autocomplete="off"
+            >
+            <button type="button" id="btnTestarGasUrl" class="btn-test-connection" title="Fazer requisição de teste para verificar a URL">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>Testar Conexão</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Caixa de Diagnóstico da Conexão em Tempo Real -->
+        <div id="sheetsDiagnosticBox" class="sheets-diagnostic-box" style="display: none;">
+          <div class="diag-header">
+            <span class="diag-icon" id="diagIcon">ℹ️</span>
+            <strong id="diagTitle">Resultado do Teste</strong>
+          </div>
+          <div class="diag-body" id="diagBody"></div>
+        </div>
+
+        <!-- Instruções Rápidas de Resolução -->
+        <div class="sheets-troubleshoot-guide">
+          <div class="guide-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>Se aparecer "Falha na sincronização", siga estes 4 passos no Google Apps Script:</span>
+          </div>
+          <ol class="guide-steps">
+            <li><strong>1. Autorizar o Script:</strong> No editor do Apps Script, selecione no topo a função <code>autorizarETestarScript</code> e clique em <strong>Executar</strong>. Conceda as permissões da conta Google.</li>
+            <li><strong>2. Configurar Acesso Público:</strong> Em <strong>Implantar &gt; Gerenciar implantações</strong> (ou Nova implantação), configure <strong>Quem tem acesso</strong> obrigatoriamente como <code>Qualquer pessoa</code> (<strong>Anyone</strong>). <em>Se estiver "Somente eu", o Google bloqueia com erro "You need access"</em>.</li>
+            <li><strong>3. Executar como:</strong> Mantenha como <code>Eu (seu_email)</code>.</li>
+            <li><strong>4. Atualizar Versão:</strong> Se você alterou o <code>Code.gs</code> após já ter implantado, clique no lápis de editar, escolha <strong>Versão: "Nova versão"</strong> e clique em <strong>Implantar</strong>. Copie a URL gerada e cole acima.</li>
+          </ol>
+        </div>
+
+        <div style="padding-top: 1.25rem; border-top: 1px solid var(--border-color); margin-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+          <button type="button" id="btnRestaurarUrlPadrao" class="btn-restore-link" title="Restaurar a URL inicial do projeto">Restaurar URL Padrão</button>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="btnCancelarModalSheets" class="btn-modal-action btn-secondary" style="padding: 8px 16px;">Fechar</button>
+            <button type="button" id="btnSalvarGasUrl" class="btn-pixel-action primary-stock" style="padding: 8px 18px; font-size: 0.88rem;">Salvar e Sincronizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast de Notificação Visual para Simulação de Ações -->
+  <div id="estoqueToast" class="estoque-toast" role="status" aria-live="polite">
+    <div class="toast-icon" id="toastIcon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    </div>
+    <div class="toast-message" id="toastMessage">Operação realizada com sucesso!</div>
   </div>
 
   <!-- Scripts Interativos -->
